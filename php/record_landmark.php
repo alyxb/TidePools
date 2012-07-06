@@ -55,18 +55,43 @@ catch ( MongoConnectionException $e )
 
 		$timeType = $_POST['timespec'];
 		
-		$timeWhen = $_POST['datetimepicker'];
+		$timeStart = $_POST['startdatetimepicker'];
+		$timeEnd = $_POST['enddatetimepicker'];
 		
 		
-		if ($timeWhen !== "Click Here"){
+		if ($timeStart == "Click Here" && $timeEnd == "Click Here"){
 		
-			$timeWhen = new MongoDate(strtotime($timeWhen));
+			$timeStart = 0;
+			$timeEnd = 0;
 		
 		}
 		
-		else {
+		else{
 		
-			$timeWhen = 0;
+			if ($timeStart !== "Click Here"){
+			
+				$timeStart = new MongoDate(strtotime($timeStart));
+			
+			}
+			
+			else {
+			
+				$timeStart = 0;
+			
+			}
+			
+			
+			if ($timeEnd !== "Click Here"){
+			
+				$timeEnd = new MongoDate(strtotime($timeEnd));
+			
+			}
+			
+			else {
+			
+				$timeEnd = 0;
+			
+			}
 		
 		}
 		
@@ -74,7 +99,8 @@ catch ( MongoConnectionException $e )
 		$time = array(
 		
 			'type' => $timeType,
-			'when' => $timeWhen,
+			'start' => $timeStart,
+			'end' => $timeEnd,
 			'arriving' => 0
 	
 		);

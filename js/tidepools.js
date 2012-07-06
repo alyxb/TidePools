@@ -1,6 +1,6 @@
 /**
  *	TidePools Social WiFi
- *  Copyright (C) 2012 Jonathan Baldwin <jrbaldwin@gmail.com>
+ *  Copyright (C) 2012 J.R.Baldwin <jrbaldwin@gmail.com>
  *
  *	This file is part of TidePools <http://www.tidepools.co>
 
@@ -54,6 +54,8 @@
 
 				
 		var bounds = map.getBounds();
+		
+		//console.log(bounds);
 		
 		if (currentFilter !== undefined){
 		
@@ -216,6 +218,11 @@ if (mapID == "unselect"){ //for routing from mapSelect function
 
 function drawLandmarks(landmarks){
 	
+	
+		var boxx = map.getBounds();	
+		
+		//console.log(boxx);
+		
 
 		var current = map.getZoom();
 		
@@ -249,7 +256,7 @@ function drawLandmarks(landmarks){
 				
 
 						var idString = z._id.$id;
-						
+
 
 						landmarkIDArray.push(idString);
 
@@ -475,22 +482,38 @@ function drawLandmarks(landmarks){
 			
 								
 						var result = landmarkResize(z.stats.avatar); //sending object's icon to function
-
-
-						number = L.Icon.extend({
-							iconUrl: 'images/numbers/marker'+counter/2+'.png',
-							shadowUrl: null,
-							iconSize: new L.Point(20, 34),
-							iconAnchor: new L.Point(0, -100),
-							popupAnchor: new L.Point(-3, -10)
-						});
 						
+						var currentZ = map.getZoom();
+						
+						if (currentZ <= 17){
+
+							number = L.Icon.extend({
+								iconUrl: 'images/numbers/marker'+counter/2+'.png',
+								shadowUrl: null,
+								iconSize: new L.Point(20, 34),
+								iconAnchor: new L.Point(20, -30),
+								popupAnchor: new L.Point(-3, -10)
+							});
+						}
+							
+						if (currentZ >= 18){
+						
+								number = L.Icon.extend({
+								iconUrl: 'images/numbers/marker'+counter/2+'.png',
+								shadowUrl: null,
+								iconSize: new L.Point(20, 34),
+								iconAnchor: new L.Point(30, -60),
+								popupAnchor: new L.Point(-3, -10)
+							});
+						
+						}
+							
 						var numberIcon = new number();
 			
 			
-						var plantMap = "4f9f8b427916357026000000";
+						var plantMap = "4fec77c3c33694d70a000000";
 						
-						var adminMap = "4f9f8bce791635ab29000000";
+						var adminMap = "4fec7800c336947909000000";
 						
 						
 						//console.log('landmarkID '+landmarkID);
@@ -508,7 +531,7 @@ function drawLandmarks(landmarks){
 							+'</br><hr style="border:2px solid #7f275b;" />'
 							+'<form id="newComment" action="php/record_comment.php" method="post" onsubmit="this.commentSubmit(); return false;">'
 							+'</select></br>'
-							+'<p style="margin-bottom:2px;">Name / Nickname</p><input type="text" id="name" value="Red Hook Guest" name="name" maxlength="20"/>'
+							+'<p style="margin-bottom:2px;">Name / Nickname</p><input type="text" id="name" value="AMC Participant" name="name" maxlength="20"/>'
 							+'<p style="margin-bottom:1px;">Comment</p><textarea name="description" class="clearme" id="description" maxlength="300"></textarea></br>'
 							+'<input type="hidden" id="userID" name="userID" value="'+userID+'" />'
 							+'<input type="hidden" id="landmarkID" name="landmarkID" value="'+landmarkID+'" />'
@@ -535,7 +558,7 @@ function drawLandmarks(landmarks){
 							+'</br><hr style="border:2px solid #7f275b;" />'
 							+'<form id="newComment" action="php/record_comment.php" method="post" onsubmit="this.commentSubmit(); return false;">'
 							+'</select></br>'
-							+'<p style="margin-bottom:2px;">Name / Nickname</p><input type="text" id="name" value="Red Hook Guest" name="name" maxlength="20"/>'
+							+'<p style="margin-bottom:2px;">Name / Nickname</p><input type="text" id="name" value="AMC Participant" name="name" maxlength="20"/>'
 							+'<p style="margin-bottom:1px;">Comment</p><textarea name="description" class="clearme" id="description" maxlength="300"></textarea></br>'
 							+'<input type="hidden" id="userID" name="userID" value="'+userID+'" />'
 							+'<input type="hidden" id="landmarkID" name="landmarkID" value="'+landmarkID+'" />'
@@ -596,7 +619,7 @@ function drawLandmarks(landmarks){
 							});
 							
 							
-							var currentZ = map.getZoom();
+							
 
 							
 							if (commentNum >= 1){
@@ -616,7 +639,7 @@ function drawLandmarks(landmarks){
 
 								mapLayersArray[landmarkCounter].addLayer(building);
 								
-								if (currentZ >= 18){
+								if (currentZ >= 16){
 								
 									mapLayersArray[landmarkCounter].addLayer(buildingNumber);
 								}
@@ -654,7 +677,7 @@ function deleteLandmark(landmarkID){
 	
 	if (r == true){
 			
-			console.log(landmarkID);
+			//console.log(landmarkID);
 
  			$.getJSON("php/remove_landmark.php",
 				{ 
@@ -687,6 +710,9 @@ function deleteLandmark(landmarkID){
 
 
 function landmarkResize(landmark){
+
+		
+		//console.log(landmark);
 	
 	
 		//******************************
@@ -860,6 +886,47 @@ function landmarkResize(landmark){
 		
 			iconSizeX = 548;
 			iconSizeY = 288;
+		
+		}
+		
+				
+		if (landmark == "A.png" || 
+			landmark == "B.png" || 
+			landmark == "C.png" || 
+			landmark == "AUD.png" || 
+			landmark == "154.png" || 
+			landmark == "156.png" || 
+			landmark == "157.png" ||
+			landmark == "2242.png" ||
+			landmark == "BC.png" ||
+			landmark == "E.png" ||
+			landmark == "FG.png" || 
+			landmark == "I.png" ||
+			landmark == "J.png" ||
+			landmark == "L.png" ||
+			landmark == "M.png" ||
+			landmark == "north.png" ||
+			landmark == "I.png" ||
+			landmark == "1243.png"){
+		
+			iconSizeX = 166;
+			iconSizeY = 160;
+		
+		}
+		
+		if (landmark == "A_s.png" ||
+			landmark == "B_s.png" ||
+			landmark == "C_s.png" ||
+			landmark == "D_s.png" ||
+			landmark == "E_s.png" ||
+			landmark == "F_s.png" ||
+			landmark == "G_s.png" ||
+			landmark == "H_s.png" ||
+			landmark == "I_s.png" ||
+			landmark == "J_s.png"){
+		
+			iconSizeX = 110;
+			iconSizeY = 111;
 		
 		}
 

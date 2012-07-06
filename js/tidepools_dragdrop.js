@@ -89,6 +89,8 @@ $(function() { //making all "items" tag divs draggable
 					var currentPos = ui.helper.position();
 	
 					var coords = map.layerPointToLatLng(map.containerPointToLayerPoint(new L.Point(currentPos.left, currentPos.top)));
+					
+					console.log(coords);
 
 		        	map.on('click', function(e){
 						

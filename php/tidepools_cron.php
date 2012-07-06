@@ -49,15 +49,131 @@ catch ( MongoConnectionException $e )
 
 
 
-// go through all landmarks 
 
-// if time is !== none, then:
+	
+	echo "</br>";
+	
+	$cursor = $collection->find();
+	
+	$cursor = iterator_to_array($cursor);
 
-// find current system time on server, convert to mongo time
+	
+	foreach($cursor as $i){
+	
+			//echo $i;
+			
+			//echo[$i]['name'];
+			
+			
+			foreach($i['stats'] as $w){
 
-// query 3 times ----> for same day, day before, week before?
+				if (in_array("time", $w)) {
+				
+		
+					timeExists($w);
 
-	$currentTime = date 
+		
+				}
+
+								
+			}
+			
+	}
+					
+			
+
+
+	
+	function timeExists($w){
+	
+			
+						
+			$start = $w['start'];
+			$end = $w['end'];
+			
+
+			//----- Start process -----//
+			$start = (string)$start;
+			
+			$pattern = "/0.00000000 /";
+			$replacement = "";
+			
+			$start = preg_replace($pattern, $replacement, $start);
+		
+			echo $start;
+			
+			if ($start == null){
+				return;
+			}
+			
+
+			
+			
+			//------ End process -----//
+			
+			$end = (string)$end;
+			
+			$pattern = "/0.00000000 /";
+			$replacement = "";
+			
+			
+			$end = preg_replace($pattern, $replacement, $end);
+			
+			$end1 = intval($end);
+			$start1 = intval($start);
+			
+			if ($end == null){
+				return;
+			}
+			
+			//----------------------//	
+			
+			
+			$now = strtotime("now");
+
+			$start = intval($start);
+			$end = intval($end);
+			
+			//var_dump($start);
+
+			
+			
+			if(dateRange($start, $end, $now)){
+			
+			  echo 'In range</br>';
+			    
+			} else {
+			
+			  echo 'Not in range</br>';
+			    
+			}
+			
+	}
+	
+	
+	
+		
+	function dateRange($start, $end, $now){
+	
+	  return (($now >= $start) && ($now <= $end));
+	
+	}
+		
+	
+	
+	
+	// find dates between 1/15/2010 and 1/30/2010
+	//$collection->find(array("ts" => array('$gt' => $now, '$lte' => $end)));
+
+
+
+
+	
+	
+	
+	/*
+	//loop of landmarks with time, timewhen =  
+	
 	
 	$timeWhen = new MongoDate(strtotime($timeWhen)); 
 	
@@ -93,7 +209,7 @@ $collection->find(array("ts" => array('$gt' => $start, '$lte' => $end)));
 	var_dump($cursor);
 
 
-
+*/
 
 
 

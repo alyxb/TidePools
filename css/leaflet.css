@@ -72,7 +72,7 @@ a.leaflet-active {
 	position: absolute;
 	}
 .leaflet-top {
-	top: 31;
+	top: 0;
 	}
 .leaflet-right {
 	right: 0;
@@ -243,7 +243,7 @@ a.leaflet-active {
 /* Visual appearance */
 
 .leaflet-container {
-	background: #ddd;
+	background: #000;
 	}
 .leaflet-container a {
 	color: #0078A8;

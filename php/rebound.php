@@ -33,6 +33,9 @@ catch ( MongoConnectionException $e )
     exit();
 }
 
+
+	$curr = "";
+
 	//if $_POST['landmark']=='buildings', etc. to pass correct landmark value
 	
 	$type = 'landmarks';
@@ -132,11 +135,113 @@ catch ( MongoConnectionException $e )
 				
 				
 				
+				
 				$cursor = iterator_to_array($cursor);
 				
+				
+				//array_push($final, $cursor);
 
 				
-				array_push($final, $cursor);
+				
+				//var_dump($cursor);
+				
+				
+				
+				foreach($cursor as $z){
+				
+					$currentID = $z['_id'];
+						
+					$currentID = (string)$currentID;
+					
+					//$type = $z['type'];
+				
+				
+					if ($z['type'] == "event" 
+						||$z['type'] == "A" 
+						||$z['type'] == "B" 
+						||$z['type'] == "C" 
+						||$z['type'] == "AUD" 
+						||$z['type'] == "154" 
+						||$z['type'] == "156"
+						||$z['type'] == "157"
+						||$z['type'] == "1243"
+						||$z['type'] == "2242"
+						||$z['type'] == "BC"
+						||$z['type'] == "E"
+						||$z['type'] == "FG"
+						||$z['type'] == "H"
+						||$z['type'] == "I"
+						||$z['type'] == "J"
+						||$z['type'] == "L"
+						||$z['type'] == "M"
+						||$z['type'] == "north"
+					){
+					
+						$timeNow = timeExists($z);
+						
+						
+						if ( $z['stats']['time']['start'] == "Click Here" || $z['stats']['time']['end'] == "Click Here"){
+						
+							
+							$nestArray = array(	
+							
+								$currentID => $z
+						
+							);
+	
+							array_push($final, $nestArray);
+						
+						}
+						
+						
+				
+						
+						if ($timeNow == "1"){
+						
+
+							$nestArray = array(	
+							
+								$currentID => $z
+						
+							);
+	
+							array_push($final, $nestArray);
+
+						}
+						
+						if ($timeNow == "0"){
+						
+							//echo "no";
+						}
+						
+
+					
+					}
+
+					
+					else {
+					
+						$nestArray2 = array(	
+						
+								$currentID => $z
+						
+							);
+	
+						array_push($final, $nestArray2);
+						
+						
+					
+						//array_push($final, $z);
+
+					}
+					
+		
+				}
+
+		
+								
+				
+	
 					
 			}
 			
@@ -147,6 +252,139 @@ catch ( MongoConnectionException $e )
 		$final = json_encode($final);
 	
 		print_r($final);
+		
+		
+		function checkTime($cursor){
+	
+			foreach($cursor as $z){
+			
+				//echo "1";
+			
+				//echo $i['name']."<br>";
+				
+				
+				//echo $z['stats'];
+				
+				//var_dump($z['stats']['time']['start']);
+				
+				//echo $z['stats']['time']['start']."<br>";
+				
+				//echo $z['stats']['time']['end']."<br>";
+				
+				//var_dump($z['stats']['time']['start']);
+				
+				$stringed = (string)$z['stats']['time']['start'];
+				
+				//echo $stringed;
+			
+				
+				//echo "<br>";
+				
+				
+				if($stringed !== "0.00000000 0"){
+				
+					//var_dump($z['stats']['time']['start']);
+					
+					//echo "<br>";
+				
+					//echo "hej fredrika<br>";
+					
+					$curr = "test";
+					
+					//return timeExists($z);
+				
+				
+				}
+				
+				else{
+				
+					return "none";
+				
+				}
+	
+			}
+
+
+		
+		}
+		
+		
+	
+	
+		function timeExists($z){
+			
+			$start = $z['stats']['time']['start'];
+			$end = $z['stats']['time']['end'];
+			
+			
+
+			//----- Start process -----//
+			$start = (string)$start;
+			
+			$pattern = "/0.00000000 /";
+			$replacement = "";
+			
+			$start = preg_replace($pattern, $replacement, $start);
+		
+			//echo $start;
+			
+			if ($start == null){
+				//return;
+			}
+			
+			//------ End process -----//
+			
+			$end = (string)$end;
+			
+			$pattern = "/0.00000000 /";
+			$replacement = "";
+			
+			
+			$end = preg_replace($pattern, $replacement, $end);
+			
+			$end1 = intval($end);
+			$start1 = intval($start);
+			
+			if ($end == null){
+				//return;
+			}
+			
+			//----------------------//	
+			
+			
+			$now = strtotime("now");
+
+			$start = intval($start);
+			$end = intval($end);
+			
+			//var_dump($start);
+
+			
+			if(dateRange($start, $end, $now)){
+			
+			  return "1";
+			  
+			 // $currentTime = "1";
+			    
+			} else {
+			
+			  return "0";
+			  
+			 // $currentTime = "0";
+			    
+			}
+			
+	}
+	
+	
+	
+		
+	function dateRange($start, $end, $now){
+	
+	  return (($now >= $start) && ($now <= $end));
+	
+	}
+
 
 
 

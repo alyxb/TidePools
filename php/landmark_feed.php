@@ -29,7 +29,7 @@
 	$counter = 1;
 	
 
-	echo '<div style="width:351px; height:80px;"> <hr style="border:3px solid #df1c53;" /><img src="/images/announcement.png" style="float:left; margin-left: 8;" /> <div id="innertext" style="width:299px; height:75; float:left; margin-left: 7; margin-top:-5;"><p2>Announcement</p2> </br> <p style="margin-top:2px; " > This version of Tidepools Social WiFi in Red Hook, Brooklyn is hosted on the Internet, while the actual map is hosted locally, on a community server. </p></div> <hr></div>';
+	echo '<div style="width:351px; height:80px;"> <hr style="border:3px solid #df1c53;" /><img src="/images/announcement.png" style="float:left; margin-left: 8;" /> <div id="innertext" style="width:299px; height:75; float:left; margin-left: 7; margin-top:-5;"><p2>TidePools Social WiFi</p2>  </br> <p style="margin-top:2px; " > Social software for Community WiFi Mesh networks <a href="http://tidepools.co">http://tidepools.co</a></p></div> <hr></div>';
 		
 
 	foreach($landmarks as $i){
@@ -60,7 +60,17 @@
 					
 					echo '<img src="/images/'.$c['stats']['avatar'].'"style="float:left; max-width:42px; margin-left: 8;"/>';//
 					
-					echo '<div id="innertext" style=" width:286px;  height:65; float:left; margin-left: 7; margin-top:0; margin-bottom:10">';
+					if ($c['feed'] !== null){
+					
+						echo '<div id="innertext" style=" width:286px;  height:65; float:left; margin-left: 7; margin-top:0; margin-bottom:42">';
+					
+					}
+					
+					else {
+					
+						echo '<div id="innertext" style=" width:286px;  height:65; float:left; margin-left: 7; margin-top:0; margin-bottom:10">';
+					
+					}
 					
 					$name = stripslashes($c['name']);
 					
@@ -74,11 +84,73 @@
 					
 					if ($c['feed'] !== null){
 					
-						$result = array_reverse($c['feed']); 
+						if ($c['stats']['time']['start']['sec'] == null || $c['stats']['time']['start']['sec'] == "0"){
+					
+							$result = array_reverse($c['feed']); 
+							
+							echo "<img src='/images/comment.png'/><p4 style='margin-bottom:7px;'>".$result[0]['words']."</p4>";
 						
-						echo "<img src='/images/comment.png'/><p4 style='margin-bottom:7px;'>".$result[0]['words']."</p4>";
+						}
 										
 					}
+					
+					
+					
+					if ($c['stats']['time']['start']['sec'] !== null && $c['stats']['time']['start']['sec'] !== "0"){
+					
+						//var_dump($c['stats']['time']['start']);
+						
+						//echo $c['stats']['time']['start']['sec'];
+						
+						//echo $c['stats']['time']['end']['sec'];
+						
+						echo "<p><b>Start:</b> ".date("H:i m-d",$c['stats']['time']['start']['sec']); 
+						echo "     <b>End:</b> ".date("H:i m-d",$c['stats']['time']['end']['sec'])."</p>";
+										
+						
+
+					}
+					
+
+					
+					//if ( $z['stats']['time']['start'] == "Click Here" || $z['stats']['time']['end'] == "Click Here"){
+					
+					
+					foreach($c['stats'] as $w){
+					
+						//var_dump($w);
+						
+						//echo $w['time']['start'];
+						
+		
+						//if (in_array("time", $w)) {
+						
+						/*
+if ( $w['time']['start'] !== 0){
+						
+							echo "asdf";
+						
+						
+	
+							//timeExists($w);
+							
+							//var_dump($w);
+							
+							//echo "<p>asdf</p>";
+
+						}
+*/
+
+
+						
+						
+					}
+
+					
+					
+					
+					
+					
 					
 					echo '</div></br><hr></div></div>';
 					
