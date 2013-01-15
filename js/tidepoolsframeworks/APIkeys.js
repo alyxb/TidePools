@@ -1,1 +1,0 @@
-var mtaBusKey = "babec670-71fc0d6a-7352d870-d81a7a2b";
