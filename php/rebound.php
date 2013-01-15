@@ -1,22 +1,41 @@
 <?php
 	
 /**
+<<<<<<< HEAD
  *	TidePools Social WiFi
  *  Copyright (C) 2012 Jonathan Baldwin <jrbaldwin@gmail.com>
  *
  *	This file is part of TidePools <http://www.tidepools.co>
 
  *  TidePools is free software: you can redistribute it and/or modify
+=======
+ *.---.      .                    .     
+ *  |  o     |                    |     
+ *  |  .  .-.| .-. .,-.  .-.  .-. | .--.
+ *  |  | (   |(.-' |   )(   )(   )| `--.
+ *  '-' `-`-'`-`--'|`-'  `-'  `-' `-`--' v0.2
+ 
+ *  Copyright (C) 2012-2013 Open Technology Institute <tidepools@opentechinstitute.org>
+ *	Lead: Jonathan Baldwin
+ *	This file is part of Tidepools <http://www.tidepools.co>
+
+ *  Tidepools is free software: you can redistribute it and/or modify
+>>>>>>> origin/cleanup
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
 
+<<<<<<< HEAD
  *  TidePools is distributed in the hope that it will be useful,
+=======
+ *  Tidepools is distributed in the hope that it will be useful,
+>>>>>>> origin/cleanup
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
 
  *  You should have received a copy of the GNU General Public License
+<<<<<<< HEAD
  *  along with TidePools.  If not, see <http://www.gnu.org/licenses/>.
  */
  
@@ -26,18 +45,35 @@ try
 
     $m = new Mongo(); // connect
     $db = $m->selectDB("RedHook");
+=======
+ *  along with Tidepools.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+ 
+require('tidepools_variables.php');
+
+try 
+{
+    $m = new Mongo(); // connect
+    $db = $m->selectDB($DBname);
+>>>>>>> origin/cleanup
 }
 catch ( MongoConnectionException $e ) 
 {
     echo '<p>Couldn\'t connect to mongodb, is the "mongo" process running?</p>';
     exit();
 }
+<<<<<<< HEAD
 
 
 	$curr = "";
 
 	//if $_POST['landmark']=='buildings', etc. to pass correct landmark value
 	
+=======
+	$curr = "";
+
+>>>>>>> origin/cleanup
 	$type = 'landmarks';
 	$coll = $db->$type;
 	
@@ -47,6 +83,7 @@ catch ( MongoConnectionException $e )
 	$swlng = floatval($_GET['swlng']);
 	
 	
+<<<<<<< HEAD
 	
 	//-------- IS THERE A FILTER ? ---------//
 
@@ -68,11 +105,24 @@ catch ( MongoConnectionException $e )
 
 
 	
+=======
+	//-------- IS THERE A FILTER ? ---------//
+	$filter = null;
+	
+	if($_GET['filter']){
+		$filter = $_GET['filter'];
+	}
+	//---------------------------------------//
+	
+	$maps = $_GET['mapIDs'];
+
+>>>>>>> origin/cleanup
 	$nelat = $nelat + 0.00020; //fixing boundary to compensate for a bit off screen
 	$nelng = $nelng + 0.00020;
 	$swlat = $swlat - 0.00020;
 	$swlng = $swlng - 0.00020;
 
+<<<<<<< HEAD
 
 	
 	$box = array(array($swlng,$swlat),array($nelng,$nelat));
@@ -92,12 +142,24 @@ catch ( MongoConnectionException $e )
 		foreach($maps as $i){
 		
 					
+=======
+	$box = array(array($swlng,$swlat),array($nelng,$nelat));
+	
+	//need to query for all map ids, sort which ones are public
+	$final = array();
+	
+	if($filter !== null){
+	
+		foreach($maps as $i){
+		
+>>>>>>> origin/cleanup
 			$cursor = $coll->find(array(
 			    'loc' => array('$within' => array('$box' => $box)),
 			    'type' => $filter,
 			    'mapID' => $i
 			)); 
 	
+<<<<<<< HEAD
 			
 			$cursor->sort(array('_id' => -1));  //sort landmarks by creation, newest first
 			
@@ -156,6 +218,34 @@ catch ( MongoConnectionException $e )
 					//$type = $z['type'];
 				
 				
+=======
+			$cursor->sort(array('_id' => -1));  //sort landmarks by creation, newest first
+			$cursor = iterator_to_array($cursor);
+			array_push($final, $cursor);
+			
+		}
+	}
+		
+	else {
+			foreach($maps as $i){
+
+				$cursor = $coll->find(array(
+					'loc' => array('$within' => array('$box' => $box)),
+					'mapID' => $i
+			  	)); 
+				
+				$cursor->sort(array('_id' => -1)); 
+
+				$cursor = iterator_to_array($cursor);
+
+				foreach($cursor as $z){
+				
+					$currentID = $z['_id'];
+					$currentID = (string)$currentID;
+	
+					//---- TIME HANDLER STATIC RIGHT NOW, THESE ITEMS HANDLE TIME -----//
+					
+>>>>>>> origin/cleanup
 					if ($z['type'] == "event" 
 						||$z['type'] == "A" 
 						||$z['type'] == "B" 
@@ -179,6 +269,7 @@ catch ( MongoConnectionException $e )
 					
 						$timeNow = timeExists($z);
 						
+<<<<<<< HEAD
 						
 						if ( $z['stats']['time']['start'] == "Click Here" || $z['stats']['time']['end'] == "Click Here"){
 						
@@ -207,10 +298,27 @@ catch ( MongoConnectionException $e )
 	
 							array_push($final, $nestArray);
 
+=======
+						if ( $z['stats']['time']['start'] == "Click Here" || $z['stats']['time']['end'] == "Click Here"){
+							
+							$nestArray = array(	
+								$currentID => $z
+							);
+							array_push($final, $nestArray);
+						}
+						
+						if ($timeNow == "1"){
+
+							$nestArray = array(	
+								$currentID => $z
+							);
+							array_push($final, $nestArray);
+>>>>>>> origin/cleanup
 						}
 						
 						if ($timeNow == "0"){
 						
+<<<<<<< HEAD
 							//echo "no";
 						}
 						
@@ -249,6 +357,25 @@ catch ( MongoConnectionException $e )
 	
 
 
+=======
+							//nothing
+						}
+					}
+					
+					//-------------------------------------------------------------//
+
+					else {
+						$nestArray2 = array(	
+								$currentID => $z
+							);
+	
+						array_push($final, $nestArray2);
+					}
+				}
+			}
+	}
+	
+>>>>>>> origin/cleanup
 		$final = json_encode($final);
 	
 		print_r($final);
@@ -257,6 +384,7 @@ catch ( MongoConnectionException $e )
 		function checkTime($cursor){
 	
 			foreach($cursor as $z){
+<<<<<<< HEAD
 			
 				//echo "1";
 			
@@ -311,12 +439,32 @@ catch ( MongoConnectionException $e )
 		
 	
 	
+=======
+
+				$stringed = (string)$z['stats']['time']['start'];
+
+				if($stringed !== "0.00000000 0"){
+
+					$curr = "test";
+				}
+				
+				else{
+					return "none";
+				}
+			}
+		}
+		
+
+>>>>>>> origin/cleanup
 		function timeExists($z){
 			
 			$start = $z['stats']['time']['start'];
 			$end = $z['stats']['time']['end'];
+<<<<<<< HEAD
 			
 			
+=======
+>>>>>>> origin/cleanup
 
 			//----- Start process -----//
 			$start = (string)$start;
@@ -339,7 +487,10 @@ catch ( MongoConnectionException $e )
 			$pattern = "/0.00000000 /";
 			$replacement = "";
 			
+<<<<<<< HEAD
 			
+=======
+>>>>>>> origin/cleanup
 			$end = preg_replace($pattern, $replacement, $end);
 			
 			$end1 = intval($end);
@@ -351,18 +502,26 @@ catch ( MongoConnectionException $e )
 			
 			//----------------------//	
 			
+<<<<<<< HEAD
 			
+=======
+>>>>>>> origin/cleanup
 			$now = strtotime("now");
 
 			$start = intval($start);
 			$end = intval($end);
+<<<<<<< HEAD
 			
 			//var_dump($start);
+=======
+
+>>>>>>> origin/cleanup
 
 			
 			if(dateRange($start, $end, $now)){
 			
 			  return "1";
+<<<<<<< HEAD
 			  
 			 // $currentTime = "1";
 			    
@@ -378,6 +537,16 @@ catch ( MongoConnectionException $e )
 	
 	
 	
+=======
+
+			} else {
+			
+			  return "0";
+
+			}
+	}
+
+>>>>>>> origin/cleanup
 		
 	function dateRange($start, $end, $now){
 	

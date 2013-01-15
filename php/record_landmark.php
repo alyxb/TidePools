@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 <?php
 
@@ -8,16 +9,36 @@
  *	This file is part of TidePools <http://www.tidepools.co>
 
  *  TidePools is free software: you can redistribute it and/or modify
+=======
+<?php
+/**
+ *.---.      .                    .     
+ *  |  o     |                    |     
+ *  |  .  .-.| .-. .,-.  .-.  .-. | .--.
+ *  |  | (   |(.-' |   )(   )(   )| `--.
+ *  '-' `-`-'`-`--'|`-'  `-'  `-' `-`--' v0.2
+ 
+ *  Copyright (C) 2012-2013 Open Technology Institute <tidepools@opentechinstitute.org>
+ *	Lead: Jonathan Baldwin
+ *	This file is part of Tidepools <http://www.tidepools.co>
+
+ *  Tidepools is free software: you can redistribute it and/or modify
+>>>>>>> origin/cleanup
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
 
+<<<<<<< HEAD
  *  TidePools is distributed in the hope that it will be useful,
+=======
+ *  Tidepools is distributed in the hope that it will be useful,
+>>>>>>> origin/cleanup
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
 
  *  You should have received a copy of the GNU General Public License
+<<<<<<< HEAD
  *  along with TidePools.  If not, see <http://www.gnu.org/licenses/>.
  */
 
@@ -25,6 +46,17 @@ try
 {
     $m = new Mongo(); // connect
     $db = $m->selectDB("RedHook");
+=======
+ *  along with Tidepools.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+require('tidepools_variables.php');
+
+try 
+{
+    $m = new Mongo(); // connect
+    $db = $m->selectDB($DBname);
+>>>>>>> origin/cleanup
 }
 catch ( MongoConnectionException $e ) 
 {
@@ -33,12 +65,16 @@ catch ( MongoConnectionException $e )
 }
 	
 	$type = 'landmarks';
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> origin/cleanup
 	$collection = $db->$type;
 	
 	
 	$type2 = 'maps';
+<<<<<<< HEAD
 	
 	$collection2 = $db->$type2;
 
@@ -106,6 +142,60 @@ catch ( MongoConnectionException $e )
 		);
 
 
+=======
+	$collection2 = $db->$type2;
+	
+	
+	$marktype = $_POST['marktype'];
+	$mapID = $_POST['maplist'];
+	$landmarkAdmin = $_POST['landmarkAdmin'];
+	$timeType = $_POST['timespec'];
+	$timeStart = $_POST['startdatetimepicker'];
+	$timeEnd = $_POST['enddatetimepicker'];
+	
+	//---TIME--//
+	
+	if ($timeStart == "Click Here" && $timeEnd == "Click Here"){
+	
+		$timeStart = 0;
+		$timeEnd = 0;
+	
+	}
+	
+	else{
+	
+		if ($timeStart !== "Click Here"){
+		
+			$timeStart = new MongoDate(strtotime($timeStart));
+		
+		}
+		
+		else {
+			$timeStart = 0;
+		}
+		
+		if ($timeEnd !== "Click Here"){
+		
+			$timeEnd = new MongoDate(strtotime($timeEnd));
+		
+		}
+		
+		else {
+		
+			$timeEnd = 0;
+		
+		}
+	}
+	
+	$time = array(
+		'type' => $timeType,
+		'start' => $timeStart,
+		'end' => $timeEnd,
+		'arriving' => 0
+	);
+
+	//-----//
+>>>>>>> origin/cleanup
 
 	//------ Landmark Stats -----------//
 	
@@ -165,6 +255,7 @@ catch ( MongoConnectionException $e )
 	//------------------------------//
 
 
+<<<<<<< HEAD
 
 	if($_POST['name']) {
 	
@@ -186,6 +277,18 @@ catch ( MongoConnectionException $e )
 		
 
 			
+=======
+	if($_POST['name']) {
+	
+
+	    $description = $_POST['description'];
+	    
+	    $lat = floatval($_POST['lat']); //converting from string to floats
+	    $lng = floatval($_POST['lng']); //...^
+		
+		$loc = array($lng,$lat);
+
+>>>>>>> origin/cleanup
 	    //------ MONGO DB ESCAPE STRING -------//
 	   /* 
 		$pattern = '$';
@@ -194,7 +297,10 @@ catch ( MongoConnectionException $e )
 		*/
 		//------------------------------------//
 		
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/cleanup
 	    
 	   	//----Landmark JSON Object------//
 						
@@ -214,6 +320,7 @@ catch ( MongoConnectionException $e )
 		
 		//---------------------------//
 		
+<<<<<<< HEAD
 
 		insertLandmark($landmark,$collection, $collection2);	
 	    
@@ -257,4 +364,29 @@ catch ( MongoConnectionException $e )
 
 	
 
+=======
+		insertLandmark($landmark,$collection, $collection2);	
+	}
+
+	function insertLandmark($landmark,$collection, $collection2){
+			
+		//$safe_insert = true;
+		$collection->insert($landmark);
+		$collection->ensureIndex(array("loc" => "2d"));
+				
+		updateMap($landmark['_id'], $collection2);
+
+	}
+	
+	function updateMap($landmarkID, $collection2){ //to store landmarks on each map
+	
+		$landmarkID = new MongoID($landmarkID);
+		$mapIDObj = new MongoID($mapID);
+		
+		$newdata = array('$push' => array("landmarks" => $landmarkID));
+		$collection2->update(array("_id"=>$mapIDObj), $newdata);
+
+	}
+
+>>>>>>> origin/cleanup
 ?>
