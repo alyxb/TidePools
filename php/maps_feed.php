@@ -1,14 +1,4 @@
 <?php 
-<<<<<<< HEAD
-
-/**
- *	TidePools Social WiFi
- *  Copyright (C) 2012 Jonathan Baldwin <jrbaldwin@gmail.com>
- *
- *	This file is part of TidePools <http://www.tidepools.co>
-
- *  TidePools is free software: you can redistribute it and/or modify
-=======
 /**
  *.---.      .                    .     
  *  |  o     |                    |     
@@ -21,38 +11,22 @@
  *	This file is part of Tidepools <http://www.tidepools.co>
 
  *  Tidepools is free software: you can redistribute it and/or modify
->>>>>>> origin/cleanup
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
 
-<<<<<<< HEAD
- *  TidePools is distributed in the hope that it will be useful,
-=======
  *  Tidepools is distributed in the hope that it will be useful,
->>>>>>> origin/cleanup
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
 
  *  You should have received a copy of the GNU General Public License
-<<<<<<< HEAD
- *  along with TidePools.  If not, see <http://www.gnu.org/licenses/>.
- */
-
-	$maps = $_POST['data'];
-	
-	
-	stripslashes($maps); //
-	
-=======
  *  along with Tidepools.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 	$maps = $_POST['data'];
 
 	stripslashes($maps); 
->>>>>>> origin/cleanup
 	
 	$counter = 1;
 	
@@ -63,38 +37,19 @@
 foreach($maps as $i){
 
 	$idVal = "'".$i['_id']['$id']."'";
-<<<<<<< HEAD
-	
-=======
->>>>>>> origin/cleanup
 	$selectVal = "'map".$counter."'";
 	
 		
 	echo '<div id="map'.$counter.'" style="width:95px; height:35px; position:relative; float:left;" onclick="reBoundFilterMap('.$idVal.','.$selectVal.');">';
-<<<<<<< HEAD
-		
-	echo '<img style="float:left; position:relative; display:inline-block; cursor:pointer;" src="/images/icon_map.png"/>';
-	
-	echo "<p style='font-size:11px;'>".$counter." ".$i['name']."</p>     ";  //plug into CSS here...
-	
-	
-	echo "</div>";
-	
-=======
 	echo '<img style="float:left; position:relative; display:inline-block; cursor:pointer;" src="images/icon_map.png"/>';
 	echo "<p style='font-size:11px;'>".$counter." ".$i['name']."</p>     ";  //plug into CSS here...
 	
 	echo "</div>";
->>>>>>> origin/cleanup
 				
 	$counter++;
 	
 	}
 
-<<<<<<< HEAD
-	
-=======
->>>>>>> origin/cleanup
 	echo "</div>";
 
 ?>
