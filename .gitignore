@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 # Compiled source #
 ###################
 *.com
@@ -26,6 +28,7 @@
 *.sql
 *.sqlite
 
+>>>>>>> origin/cleanup
 # OS generated files #
 ######################
 .DS_Store
@@ -35,6 +38,10 @@
 .Trashes
 Icon?
 ehthumbs.db
+<<<<<<< HEAD
+Thumbs.db
+=======
 Thumbs.db
 
 APIkeys.js	
+>>>>>>> origin/cleanup
