@@ -1,30 +1,35 @@
-
 <?php
-
 /**
- *	TidePools Social WiFi
- *  Copyright (C) 2012 Jonathan Baldwin <jrbaldwin@gmail.com>
- *
- *	This file is part of TidePools <http://www.tidepools.co>
+ *.---.      .                    .     
+ *  |  o     |                    |     
+ *  |  .  .-.| .-. .,-.  .-.  .-. | .--.
+ *  |  | (   |(.-' |   )(   )(   )| `--.
+ *  '-' `-`-'`-`--'|`-'  `-'  `-' `-`--' v0.2
+ 
+ *  Copyright (C) 2012-2013 Open Technology Institute <tidepools@opentechinstitute.org>
+ *	Lead: Jonathan Baldwin
+ *	This file is part of Tidepools <http://www.tidepools.co>
 
- *  TidePools is free software: you can redistribute it and/or modify
+ *  Tidepools is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
 
- *  TidePools is distributed in the hope that it will be useful,
+ *  Tidepools is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
 
  *  You should have received a copy of the GNU General Public License
- *  along with TidePools.  If not, see <http://www.gnu.org/licenses/>.
+ *  along with Tidepools.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+require('tidepools_variables.php');
 
 try 
 {
     $m = new Mongo(); // connect
-    $db = $m->selectDB("RedHook");
+    $db = $m->selectDB($DBname);
 }
 catch ( MongoConnectionException $e ) 
 {
@@ -35,7 +40,6 @@ catch ( MongoConnectionException $e )
 	//if $_POST['landmark']=='buildings', etc. to pass correct landmark value
 	
 	$type = 'maps';
-
 
 	$collection = $db->$type;
 	
@@ -86,8 +90,6 @@ if($_POST['mapname']) {
 	$avatar = $mapType.'.png'; //avatar based on user selection
 	$expires = 'never';
 
-
-	
 	$stats = array(	
 		'expires'=>$expires,
 		'avatar'=>$avatar,
@@ -99,14 +101,12 @@ if($_POST['mapname']) {
 	);
 	
 	
-	
 	//---------- Landmarks on Map --------//
 	
 	$landmarks = array(
 
 	);
 
-	
 	//---------- Permissions --------//
 	
 	$viewers = array();
@@ -122,7 +122,6 @@ if($_POST['mapname']) {
 	
 	//------------------------------//
 
-
 			
 	    //------ MONGO DB ESCAPE STRING -------//
 	   /* 
@@ -131,9 +130,9 @@ if($_POST['mapname']) {
 		echo preg_replace($pattern, $replacement, $description); 
 		*/
 		//------------------------------------//
-
-
-
+	
+	
+	
 	   	//----Map JSON Object------//
 						
 		$map = array(
@@ -143,34 +142,22 @@ if($_POST['mapname']) {
 		    'landmarks'=>$landmarks,
 		    'stats'=>$stats,
 		    'permissions'=>$permissions
-
+	
 		);
 		
 		//---------------------------//
 		
-
+	
 		insertMap($map,$collection);	
 	    
-	    
 	}
 
-
-
-	
 	function insertMap($map,$collection){
 			
-		$safe_insert = true;
-		
-		$collection->insert($map,$safe_insert);
-		
+		//$safe_insert = true;
+		$collection->insert($map);
 		echo "Map Created!";
-		
-
-
 	}
-
-	
-
 
 	function mapTypeProcess($openEdit, $hidden, $scavengerHunt){
 	
@@ -179,7 +166,6 @@ if($_POST['mapname']) {
 		if( ($openEdit == 1) && ($hidden == 1) && ($scavengerHunt == 1) ){
 			return "openhiddenhunt";
 		}
-		
 		
 		else if( ($openEdit == 0) && ($hidden == 0) && ($scavengerHunt == 0) ){
 	
@@ -227,9 +213,6 @@ if($_POST['mapname']) {
 			return "nothing";
 		
 		}
-
-	
-	
 	}
 
 
