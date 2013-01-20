@@ -29,7 +29,7 @@
  * maps_feed.php
  * 
  *     Called from:
- *         js/tidepools_conf.js
+ *         js/tidepoolsframeworks/map_rendering.js
  *
  *     Calls:
  *         none

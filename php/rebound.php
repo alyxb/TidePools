@@ -30,7 +30,7 @@
  * rebound.php
  * 
  *     Called from:
- *         js/tidepools.js
+ *         js/tidepoolsframeworks/map_rendering.js
  *
  *     Calls:
  *         none
