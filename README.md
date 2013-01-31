@@ -1,20 +1,12 @@
-<<<<<<< HEAD
-h1. Tidepools: Social WiFi Local Application Platform
-=======
-TidePools: Social WiFi Local Application Platform
+Tidepools: Social WiFi Local Application Platform
 ================
->>>>>>> markup changes to readme
 
 Open Technology Institute <br />
 Contact: <tidepools@opentechinstitute.org> <br />
 Lead Dev & Design: Jonathan Baldwin [@jrbaldwin](https://github.com/jrbaldwin "@jrbaldwin") <br />
 Project Manager: Georgia Bullen [@georgiamoon](https://github.com/georgiamoon "@georgiamoon") <br />
 
-<<<<<<< HEAD
-Tidepools is social, collaborative mapping software for wireless mesh community networks <http://www.tidepools.co>
-=======
 [TidePools](http://www.tidepools.co "Tidepools") is social, collaborative mapping software for wireless mesh community networks.
->>>>>>> more readme updates
 
 Getting Started
 ---------------
