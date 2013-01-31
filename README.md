@@ -7,8 +7,8 @@ TidePools: Social WiFi Local Application Platform
 
 Open Technology Institute <br />
 Contact: <tidepools@opentechinstitute.org> <br />
-Lead Dev & Design: Jonathan Baldwin (@jrbaldwin) <br />
-Project Manager: Georgia Bullen (@georgiamoon) <br />
+Lead Dev & Design: Jonathan Baldwin [jrbaldwin](https://github.com/jrbaldwin "jrbaldwin") <br />
+Project Manager: Georgia Bullen [georgiamoon](https://github.com/georgiamoon "georgiamoon") <br />
 
 Tidepools is social, collaborative mapping software for wireless mesh community networks <http://www.tidepools.co>
 
