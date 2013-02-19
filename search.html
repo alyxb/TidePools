@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+    <!--
+    /************************************************************
+     * search.html
+     *
+     * Lisa J. Lovchik
+     * exexpat2@gmail.com
+     *
+     * Implements TidePools search functionality using MongoDB
+     *
+     ************************************************************
+    /-->
+
+
+    <form name="search" action="search.php" method="post">
+
+        <!-- city and collection are hard-coded for now;
+            later, this can be expanded for other cities or datasets
+        <input type="hidden" name="database" value="RedHook" />
+        <input type="hidden" name="coll" value="landmarks" /> -->
+
+        <!-- <strong>Select city and dataset:</strong><br />
+
+        <select name="database">
+            <option value="RedHook">Red Hook, NY</option>
+        </select>
+
+        <select name="coll">
+            <option value="landmarks">Landmarks</option>
+        </select>
+        <br /><br /> -->
+
+
+        <strong>Search by:</strong><br />
+
+        <select name="searchKey">
+            <option value="name">Name</option>
+            <option value="description">Description</option>
+            <option value="type">Type</option>
+            <option value="loc">Within distance of (#):</option>
+            <option value="time" style="font-style: italic; color: #444444;">Time (under construction)</option>
+        </select>
+        <input type="text" name="searchTerm"> <strong>Keyword (max 40 characters)</strong><br />
+
+        <strong>(for location) Distance units:</strong>
+        <input type="radio" name="distUnits" value="mi" checked>Miles
+        <input type="radio" name="distUnits" value="km">Kilometers
+        <br /><br />
+
+        <!--starting point for location search is hard-coded for now;
+            later, this will be handled by the map interface -->
+        <input type="hidden" name="lon" value="-74.001862406731" />
+        <input type="hidden" name="lat" value="40.674576233841" />
+
+        <input type="submit" value="Submit">
+
+        <button onclick="changeFeed('searchResults')">Click me</button>
+    </form>
+
+    <div style="margin: 3ex; padding: 10px; background-color: #ffff99; width: 28em;">
+        <strong>Example searches:</strong><br />
+        Name: school, health, library, initiative, Brooklyn<br />
+        Type: busstop, library, police, postoffice, event, garden, flowers1, tree<br />
+        Description: dwight, van brunt, barbeque<br />
+        Distance: .3 miles, .4 kilometers
+    </div>
+
+</body>
+</html>
