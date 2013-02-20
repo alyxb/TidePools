@@ -52,10 +52,8 @@ $swlng = floatval($_POST['swlng']);
 $filter = (isset($_POST['filter']) ? $_POST['filter'] : null);
 
 //---------------------------------------//
+
 $maps = (isset($_POST['mapIDs']) ? $_POST['mapIDs'] : null);
-
-//-- CHANGE METHOD ABOVE TO 'POST' IN JS -----------------------------//
-
 
 $nelat = $nelat + 0.00020; //fixing boundary to compensate for a bit off screen
 $nelng = $nelng + 0.00020;

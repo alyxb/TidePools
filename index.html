@@ -1,15 +1,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
-<!--                                      
-                                      
-.===.      .                    .     
-  |  o     |                    |     
+<!--
+
+.===.      .                    .
+  |  o     |                    |
   |  .  .-.| .-. .,-.  .-.  .-. | .==.
   |  | (   |(.-' |   )(   )(   )| `==.
   '-' `-`-'`-`=='|`-'  `-'  `-' `-`==' v0.2
-                 |                    
-                 '                               
+                 |
+                 '
   Open Technology Institute & jrbaldwin
-  
+
 //-->
 
 <head>
@@ -25,7 +25,8 @@
 </head>
 
 <body>
-  <div id="navframe" style="margin-top:-10px">
+  <!-- left frame -->
+  <div id="navframe" style="margin-top:-10px;">
     <div style=
     "width:353; height:5; background-color:#7f275b; position: relative; top:9;"></div>
 
@@ -39,6 +40,7 @@
 
     <div id="navtop" class="unhidden"></div>
 
+    <!-- options to filter by landmark type -->
     <div id="filters" style=
     "width:353; height:134; background-color:#ebe1e3;top: 92;position: relative;">
       <div style="padding: 6px 6px 6px 6px;">
@@ -103,6 +105,7 @@
       </div>
     </div>
 
+    <!-- feeds -->
     <div style=
     "width:353; height:5; background-color:#7f275b; top: 92; position: relative;"></div>
 
@@ -116,6 +119,12 @@
     "width:89px; height:19px; background-color:#ebe1e3; position: relative; display:inline-block; top:90px; margin-left:-1; text-align: center; cursor:pointer;"
     onclick="changeFeed('comments');">
       <p3>Chat Feed</p3>
+    </div>
+
+    <div id="Search" style=
+    "width:89px; height:19px; background-color:#eb6699; position:relative; display:inline-block; top:90px; margin-left:-1; text-align: center; cursor:pointer;"
+    onclick="changeFeed('search');">
+      <p3>Search</p3>
     </div>
 
     <div id="nav"></div>
@@ -140,7 +149,7 @@
         Theme/Description<br />
         <br />
         <textarea name="mapdescrip" id="mapdescrip" maxlength="300">
-</textarea><br />
+            </textarea><br />
         <input type="button" id="mapsubmit" value="Save" onsubmit=
         "this.mapsubmit(); return false;" /><br />
         <br />
@@ -277,16 +286,16 @@
   onclick="secretLandmark()">
     <div id="loadingDiv" style=
     "background-image:url('images/loading.gif'); position:absolute;"></div><script src=
-    "js/resources/leaflet.js" type="text/javascript"></script> 
-    <script src="js/resources/jquery.js" type="text/javascript"></script> 
-    <script src="js/resources/jquery_ui.js" type="text/javascript"></script> 
-    <script src="js/resources/jquery_ui_timepicker.js" type="text/javascript"></script> 
+    "js/resources/leaflet.js" type="text/javascript"></script>
+    <script src="js/resources/jquery.js" type="text/javascript"></script>
+    <script src="js/resources/jquery_ui.js" type="text/javascript"></script>
+    <script src="js/resources/jquery_ui_timepicker.js" type="text/javascript"></script>
 <!-- <script src="js/tidepoolsframeworks/APIkeys.js"></script> UNCOMMENT TO LOAD YOUR API Keys-->
-     <script src="js/tidepoolsframeworks/global_functions.js" type="text/javascript"></script> 
-     <script src="js/tidepoolsframeworks/dragdrop.js" type="text/javascript"></script> 
-     <script src="js/tidepoolsframeworks/map_rendering.js" type="text/javascript"></script> 
-     <script src="js/tidepoolsframeworks/API_collect.js" type="text/javascript"></script> 
-     <script src="js/tidepoolsframeworks/landmark_functions.js" type="text/javascript"></script> 
+     <script src="js/tidepoolsframeworks/global_functions.js" type="text/javascript"></script>
+     <script src="js/tidepoolsframeworks/dragdrop.js" type="text/javascript"></script>
+     <script src="js/tidepoolsframeworks/map_rendering.js" type="text/javascript"></script>
+     <script src="js/tidepoolsframeworks/API_collect.js" type="text/javascript"></script>
+     <script src="js/tidepoolsframeworks/landmark_functions.js" type="text/javascript"></script>
      <script src="js/tidepools.js" type="text/javascript"></script>
   </div>
 </body>
