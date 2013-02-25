@@ -32,9 +32,11 @@
  */
 
 
-require('php/tidepools_variables.php');
+require('tidepools_variables.php');
 
 try {
+
+
     // open connection to MongoDB server
     $m = new Mongo('localhost');
 
@@ -151,3 +153,4 @@ try {
     die('Error: ' . $e -> getMessage());
 }
 
+?>

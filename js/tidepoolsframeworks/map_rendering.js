@@ -125,6 +125,7 @@
 
                 function(landmarks){
 
+
                     drawLandmarks(landmarks); //render data on map
 
                     //check feed type to specify what data to show in scroller from query
@@ -136,13 +137,10 @@
                         $('#nav').load('php/landmark_feed_shouts.php',{'data':landmarks}); //also sending along the lat/long where landmark was dropped
                     }
 
-                    if (feedType == "search"){
-                        $('#nav').load('php/searchtest.php',{'searchKey'});
-                    }
 
                     if (feedType == "searchResults"){
-                        $('#nav').load('php/searchtest.php',{'searchKey'});
-                        // $('#nav').load('php/searchtest.php',$_POST['searchKey']);
+
+                        $('#nav').html(searchResult);
                     }
                 }
             );
