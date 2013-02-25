@@ -134,13 +134,9 @@
 		$.post("php/search.php", $("#searchform").serialize(),
 
 			function(result){
-
 				searchResult = result;
         		unhide('searchwindow'); 
    				changeFeed('searchResults');
-
-   				//$('#nav').load(result);
-
 			}
 		);
 	
