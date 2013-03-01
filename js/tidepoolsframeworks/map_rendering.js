@@ -141,6 +141,7 @@
                     if (feedType == "searchResults"){
 
                         $('#nav').html(searchResult);
+                        // $('#nav').load('php/search.php',{'searchResult', 'data':landmarks});
                     }
                 }
             );

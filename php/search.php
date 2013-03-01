@@ -34,8 +34,14 @@
 
 require('tidepools_variables.php');
 
-try {
 
+
+    // may not be needed at all?
+    $landmarks = (isset($_POST['data']) ? $_POST['data'] : null);
+
+    $landmarks = stripslashesDeep($landmarks);
+
+try {
 
     // open connection to MongoDB server
     $m = new Mongo('localhost');
@@ -62,7 +68,7 @@ try {
 
     $key = $m -> $_POST['searchKey'];
 
-    echo '<h1>TidePools search</h1>';
+    echo '<h3>TidePools search</h3>';
 
     // display and execute selected query
     switch ($key) {
@@ -75,8 +81,8 @@ try {
                     '/' . $sanTerm . '/i'
                 )
             );
-            echo '<h3>Locations with "' . $sanTerm . '" in their '
-                . $key . '</span></h3>';
+            echo '<b>Locations with "' . $sanTerm . '" in their '
+                . $key . '</span></b>';
             break;
         case "loc":
             // get starting point and radius
@@ -118,8 +124,22 @@ try {
             echo "<h2>Error - invalid search type</h2>";
     }
 
+
     $cursor = $collection -> find($query);
-    echo '<h2>' . $cursor -> count() . ' item(s) found. </h2>';
+    echo '<h4>' . $cursor -> count() . ' item(s) found. </h4>';
+
+    // convert search results to JSON format
+    $final = array();
+    // $cursor2 = array();
+
+    // $cursor2 = $cursor;
+    $cursor = iterator_to_array($cursor);
+    array_push($final, $cursor);
+
+    $final = json_encode($final);
+    print_r($final);
+
+    echo '<br /><br />';
 
 
     /*
@@ -137,13 +157,14 @@ try {
     // iterate through the result set and print each document
     foreach ($cursor as $obj) {
         echo 'Name: ' . $obj['name'] . '<br />';
-        echo 'Time: ' . $obj['stats']['time']['start'] . ' - ' .
-            $obj['stats']['time']['end'] . '<br />';
+        echo 'Time: ' . $obj['stats']['time']['start'] . ' - '
+            . $obj['stats']['time']['end'] . '<br />';
         echo 'Location: ' . $obj['loc'][0] . ', ' . $obj['loc'][1] . '<br />';
         echo 'Description: ' . $obj['description'] . '<br />';
         echo 'Type: ' . $obj['type'] . '<br />';
         echo '<br />';
     }
+
 
     // disconnect from server
     $m -> close();
@@ -153,4 +174,11 @@ try {
     die('Error: ' . $e -> getMessage());
 }
 
-?>
+function stripslashesDeep($value)
+{
+    $value = is_array($value)
+        ? array_map('stripslashesDeep', $value)
+        : stripslashes($value);
+
+    return $value;
+}

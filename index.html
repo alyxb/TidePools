@@ -109,21 +109,23 @@
     <div style=
     "width:353; height:5; background-color:#7f275b; top: 92; position: relative;"></div>
 
-    <div id="LandmarksFeed" style=
-    "width:89px; height:19px; background-color:#8bc3c5; position: relative; display:inline-block; top:90px; text-align: center; cursor:pointer;"
-    onclick="changeFeed('landmarks');">
+    <div id="LandmarksFeed" style="width:89px; height:19px;
+        background-color:#8bc3c5; position: relative; display:inline-block;
+        top:90px; text-align: center; cursor:pointer;"
+        onclick="changeFeed('landmarks');">
       <p3>Landmarks</p3>
     </div>
 
-    <div id="EventsFeed" style=
-    "width:89px; height:19px; background-color:#ebe1e3; position: relative; display:inline-block; top:90px; margin-left:-1; text-align: center; cursor:pointer;"
-    onclick="changeFeed('comments');">
+    <div id="EventsFeed" style="width:89px; height:19px;
+        background-color:#ebe1e3; position: relative; display:inline-block;
+        top:90px; margin-left:-1; text-align: center; cursor:pointer;"
+        onclick="changeFeed('comments');">
       <p3>Chat Feed</p3>
     </div>
 
-    <div id="Search" style=
-    "width:89px; height:19px; background-color:#eb6699; position:relative; display:inline-block; top:90px; margin-left:-1; text-align: center; cursor:pointer;"
-    onclick="unhide('searchwindow')">
+    <div id="Search" style="width:89px; height:19px; background-color:#eb6699;
+        position:relative; display:inline-block; top:90px; margin-left:-1;
+        text-align: center; cursor:pointer;" onclick="unhide('searchwindow')">
       <p3>Search</p3>
     </div>
 
@@ -133,22 +135,6 @@
 
         <form id="searchform">
 
-        <!-- city and collection are hard-coded for now;
-            later, this can be expanded for other cities or datasets
-        <input type="hidden" name="database" value="RedHook" />
-        <input type="hidden" name="coll" value="landmarks" /> -->
-
-        <!-- <strong>Select city and dataset:</strong><br />
-
-        <select name="database">
-            <option value="RedHook">Red Hook, NY</option>
-        </select>
-
-        <select name="coll">
-            <option value="landmarks">Landmarks</option>
-        </select>
-        <br /><br /> -->
-
         <strong>Search by:</strong><br />
 
         <select name="searchKey">
@@ -156,9 +142,11 @@
             <option value="description">Description</option>
             <option value="type">Type</option>
             <option value="loc">Within distance of (#):</option>
-            <option value="time" style="font-style: italic; color: #444444;">Time (under construction)</option>
+            <option value="time" style="font-style: italic; color: #444444;">
+                Time (under construction)</option>
         </select>
-        <input type="text" name="searchTerm"> <strong>Keyword (max 40 characters)</strong><br />
+        <input type="text" name="searchTerm"> <strong>Keyword (max 40
+            characters)</strong><br />
 
         <strong>(for location) Distance units:</strong>
         <input type="radio" name="distUnits" value="mi" checked>Miles
@@ -177,7 +165,8 @@
         <input type="button" id="searchsubmit" value="Search" onsubmit=
         "this.searchsubmit(); return false;" /><br />
 
-          <div style="margin: 3ex; padding: 10px; background-color: #ffff99; width: 18em;">
+          <div style="margin: 3ex; padding: 10px; background-color: #ffff99;
+            width: 18em;">
             <strong>Example searches:</strong><br />
             Name: school, health, library, initiative, Brooklyn<br />
             Type: busstop, library, police, postoffice, event, garden, flowers1, tree<br />
@@ -187,7 +176,7 @@
 
       </form>
 
-      
+
     </div>
 
   </div>
