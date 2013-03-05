@@ -34,12 +34,12 @@
 
 require('tidepools_variables.php');
 
+$counter = 1;
 
-
-    // may not be needed at all?
-    $landmarks = (isset($_POST['data']) ? $_POST['data'] : null);
-
-    $landmarks = stripslashesDeep($landmarks);
+// rename landmarks to something more appropiate, since it should include
+// searchTerm, etc.?
+$landmarks = (isset($_POST['data']) ? $_POST['data'] : null);
+$landmarks = stripslashesDeep($landmarks);
 
 try {
 
@@ -62,15 +62,14 @@ try {
     $type = 'landmarks';
     $collection = $db -> $type;
 
+
     // sanitize text box input
     $sanTerm = substr($_POST['searchTerm'], 0, 40);
     $sanTerm = strip_tags($sanTerm);
 
     $key = $m -> $_POST['searchKey'];
 
-    echo '<h3>TidePools search</h3>';
-
-    // display and execute selected query
+    // prepare to query DB
     switch ($key) {
         case "name":
         case "description":
@@ -82,7 +81,7 @@ try {
                 )
             );
             echo '<b>Locations with "' . $sanTerm . '" in their '
-                . $key . '</span></b>';
+                . $key . '</span></b><br /><br />';
             break;
         case "loc":
             // get starting point and radius
@@ -105,9 +104,9 @@ try {
             $lat = (float) $_POST['lat'];
             $lonlat = array($lon, $lat);
 
-            echo '<h3>Locations within ' . $sanTerm . ' '.
+            echo '<b>Locations within ' . $sanTerm . ' '.
                 $distanceUnits . ' of ' . $lon .  ' longitude, ' .
-                $lat . ' latitude</span><br />';
+                $lat . ' latitude</b><br />';
 
             // set up location search as geospatial indexing search
             $query = array(
@@ -121,25 +120,27 @@ try {
             // to be added in the future
             break;
         default:
-            echo "<h2>Error - invalid search type</h2>";
+            echo "<h3>Error - invalid search type</h3>";
     }
 
-
+    // query database
     $cursor = $collection -> find($query);
-    echo '<h4>' . $cursor -> count() . ' item(s) found. </h4>';
+
+
+    // display search results
+    echo '<b>' . $cursor -> count() . ' item(s) found.</b><br /><br />';
 
     // convert search results to JSON format
     $final = array();
-    // $cursor2 = array();
 
-    // $cursor2 = $cursor;
     $cursor = iterator_to_array($cursor);
     array_push($final, $cursor);
 
     $final = json_encode($final);
     print_r($final);
 
-    echo '<br /><br />';
+
+    // echo '<br /><br />';
 
 
     /*
@@ -153,7 +154,7 @@ try {
     echo '<h3>Now, a little neater:</h3>';
     */
 
-
+/* TAKE THIS DISPLAY OUT FOR NOW
     // iterate through the result set and print each document
     foreach ($cursor as $obj) {
         echo 'Name: ' . $obj['name'] . '<br />';
@@ -164,6 +165,7 @@ try {
         echo 'Type: ' . $obj['type'] . '<br />';
         echo '<br />';
     }
+*/
 
 
     // disconnect from server

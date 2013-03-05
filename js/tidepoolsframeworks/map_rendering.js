@@ -128,20 +128,19 @@
 
                     drawLandmarks(landmarks); //render data on map
 
-                    //check feed type to specify what data to show in scroller from query
+                    // check feed type to specify what data to show in scroller from query
                     if (feedType == "landmarks"){
-                        $('#nav').load('php/landmark_feed.php',{'data':landmarks}); //also sending along the lat/long where landmark was dropped
+                        $('#nav').load('php/landmark_feed.php',{'data':landmarks}); // also sending along the lat/long where landmark was dropped
                     }
 
                     if (feedType == "comments"){
-                        $('#nav').load('php/landmark_feed_shouts.php',{'data':landmarks}); //also sending along the lat/long where landmark was dropped
+                        $('#nav').load('php/landmark_feed_shouts.php',{'data':landmarks}); // also sending along the lat/long where landmark was dropped
                     }
-
 
                     if (feedType == "searchResults"){
 
-                        $('#nav').html(searchResult);
-                        // $('#nav').load('php/search.php',{'searchResult', 'data':landmarks});
+                        // $('#nav').html(searchResult);
+                        $('#nav').load('php/search_results_feed.php',{'data':searchResult});
                     }
                 }
             );
@@ -154,7 +153,8 @@
 
 
 
-    //----FILTER query of map within bounding box (for some reason, combining both rebound functions was throwing crazy errors------//
+    //----FILTER query of map within bounding box (for some reason, combining
+    // both rebound functions was throwing crazy errors------//
 
     function reBoundFilter(filter){
 
@@ -189,8 +189,70 @@
 
     //-----------------------------------------//
 
+//*****************************************
 
-    function reBoundFilterMap(mapID,divID){ //when map is clicked, filters only this map
+    function reBoundSearch(){
+
+        if (APIload == true){
+            getAPIs(); //reloading APIs after every map change, but this SHOULD be storing values for a time duration, then re-requesting
+        }
+
+        var bounds = map.getBounds(); //geo coordinates of users current window
+
+        //--- Should we filter out some landmarks?---//
+
+        if (currentFilter !== undefined){
+            reBoundFilter(currentFilter);
+            return;
+        }
+
+        if (currentMap !== "combined"){
+            reBoundFilter(currentFilter);
+            return;
+        }
+        //-----------//
+
+        else {
+
+            $.postJSON("php/rebound.php", //what data is inside this geo window?
+                {
+                    'nelat' : bounds._northEast.lat,
+                    'nelng' : bounds._northEast.lng,
+                    'swlat' : bounds._southWest.lat,
+                    'swlng' : bounds._southWest.lng,
+                    'mapIDs' : mapIDArray
+                },
+
+                function(landmarksSearch){
+
+
+                    drawLandmarks(searchResult); //render data on map
+
+                    // check feed type to specify what data to show in scroller from query
+                    if (feedType == "landmarks"){
+                        $('#nav').load('php/landmark_feed.php',{'data':landmarks}); // also sending along the lat/long where landmark was dropped
+                    }
+
+                    if (feedType == "comments"){
+                        $('#nav').load('php/landmark_feed_shouts.php',{'data':landmarks}); // also sending along the lat/long where landmark was dropped
+                    }
+
+                    if (feedType == "searchResults"){
+                        // $('#nav').html(searchResult);
+                        $('#nav').load('php/search_results_feed.php',{'data':searchResult});
+                    }
+                }
+            );
+        }
+    }
+
+
+//*****************************************
+
+
+
+    //when map is clicked, filters only this map
+    function reBoundFilterMap(mapID,divID){
         currentMap = mapID;
         mapSelect(divID);
         reBoundFilter(currentFilter);
@@ -428,8 +490,8 @@
              item.className=(item.className=='select')?'unselect':'select';
          }
 
-
-         if (lastMapFilter == divID && item.className == 'unselect'){ //unselect and kill map filter
+        //unselect and kill map filter
+         if (lastMapFilter == divID && item.className == 'unselect'){
             reBoundFilterMap("combined");
         }
 
