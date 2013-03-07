@@ -132,17 +132,12 @@
 	
 		var data = $('#searchform').serializeArray();
 
-		//console.log(data);
-
 		data.push({name: 'mapIDs', value: mapIDArray});
-
-		//console.log(data);
 
 		$.post("php/search.php", data,
 
 			function(result){
-
-				//console.log(result);
+				
 				searchResult = result;
         		unhide('searchwindow'); 
    				changeFeed('searchResults');
