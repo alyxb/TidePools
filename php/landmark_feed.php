@@ -40,7 +40,13 @@ $counter = 1;
 if (isset($_POST['data'])) {
 
     $landmarks = $_POST['data'];
-    $landmarks = stripslashesDeep($landmarks);
+//    $landmarks = stripslashesDeep($landmarks);
+    print_r($landmarks);
+}
+
+/*
+    var_dump($landmarks);
+    echo '<br /><br />';
 
     foreach ($landmarks as $v) {
 
@@ -119,3 +125,4 @@ function stripslashesDeep($value)
 
     return $value;
 }
+*/

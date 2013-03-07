@@ -4,7 +4,7 @@
  * search.php
  *
  * Searches database for landmarks by keyword for name, description, or type
- *
+ * (takes
  *
  *.---.      .                    .
  *  |  o     |                    |
@@ -36,10 +36,15 @@ require('tidepools_variables.php');
 
 $counter = 1;
 
+
+// $maps = (isset($_POST['mapIDs']) ? $_POST['mapIDs'] : null);
+
+
+
 // rename landmarks to something more appropiate, since it should include
 // searchTerm, etc.?
-$landmarks = (isset($_POST['data']) ? $_POST['data'] : null);
-$landmarks = stripslashesDeep($landmarks);
+$searchResult = (isset($_POST['data']) ? $_POST['data'] : null);
+$searchResult = stripslashesDeep($searchResult);
 
 try {
 
@@ -62,6 +67,28 @@ try {
     $type = 'landmarks';
     $collection = $db -> $type;
 
+    $final = array();
+
+/*
+        //======================================//
+        // For each map layer, find landmarks that belong in the box
+            foreach ($searchResult as $v) {
+
+            $cursor = $collection -> find(array(
+                'loc' => array(
+                    '$within' => array(
+                        '$box' => $box)
+                ),
+                'mapID' => $v)
+            );
+
+            $cursor -> sort(array('_id' => -1));
+            $cursor = iterator_to_array($cursor);
+
+        //=======================================//
+*/
+
+
 
     // sanitize text box input
     $sanTerm = substr($_POST['searchTerm'], 0, 40);
@@ -80,8 +107,9 @@ try {
                     '/' . $sanTerm . '/i'
                 )
             );
-            echo '<b>Locations with "' . $sanTerm . '" in their '
+            /* echo '<b>Locations with "' . $sanTerm . '" in their '
                 . $key . '</span></b><br /><br />';
+            */
             break;
         case "loc":
             // get starting point and radius
@@ -104,9 +132,10 @@ try {
             $lat = (float) $_POST['lat'];
             $lonlat = array($lon, $lat);
 
-            echo '<b>Locations within ' . $sanTerm . ' '.
+            /* echo '<b>Locations within ' . $sanTerm . ' '.
                 $distanceUnits . ' of ' . $lon .  ' longitude, ' .
                 $lat . ' latitude</b><br />';
+            */
 
             // set up location search as geospatial indexing search
             $query = array(
@@ -128,7 +157,7 @@ try {
 
 
     // display search results
-    echo '<b>' . $cursor -> count() . ' item(s) found.</b><br /><br />';
+    // echo '<b>' . $cursor -> count() . ' item(s) found.</b><br /><br />';
 
     // convert search results to JSON format
     $final = array();
@@ -155,6 +184,9 @@ try {
     */
 
 /* TAKE THIS DISPLAY OUT FOR NOW
+
+    // change $obj to $v later for consistency
+
     // iterate through the result set and print each document
     foreach ($cursor as $obj) {
         echo 'Name: ' . $obj['name'] . '<br />';
@@ -165,6 +197,11 @@ try {
         echo 'Type: ' . $obj['type'] . '<br />';
         echo '<br />';
     }
+
+    // change $obj to $v later for consistency
+    unset ($obj); // remove lingering foreach() values from memory
+
+
 */
 
 

@@ -125,22 +125,26 @@
 
                 function(landmarks){
 
+                    // console.log(landmarks);
 
-                    drawLandmarks(landmarks); //render data on map
+
 
                     // check feed type to specify what data to show in scroller from query
                     if (feedType == "landmarks"){
                         $('#nav').load('php/landmark_feed.php',{'data':landmarks}); // also sending along the lat/long where landmark was dropped
+                        drawLandmarks(landmarks); //render data on map
                     }
 
                     if (feedType == "comments"){
                         $('#nav').load('php/landmark_feed_shouts.php',{'data':landmarks}); // also sending along the lat/long where landmark was dropped
+                        drawLandmarks(landmarks); //render data on map
                     }
 
                     if (feedType == "searchResults"){
 
                         // $('#nav').html(searchResult);
                         $('#nav').load('php/search_results_feed.php',{'data':searchResult});
+                        drawLandmarks(searchResult); //render data on map
                     }
                 }
             );
@@ -190,7 +194,7 @@
     //-----------------------------------------//
 
 //*****************************************
-
+/*
     function reBoundSearch(){
 
         if (APIload == true){
@@ -248,6 +252,7 @@
 
 
 //*****************************************
+*/
 
 
 
@@ -266,6 +271,8 @@
 
 
     function drawLandmarks(landmarks){
+
+        console.log(landmarks);
 
         var currentZ = map.getZoom(); //current map zoom
 
