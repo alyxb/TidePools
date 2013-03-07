@@ -130,14 +130,24 @@
 
 	$("#searchsubmit").click(function(e) {   //on submit, send info to DB
 	
+		var data = $('#searchform').serializeArray();
 
-		$.post("php/search.php", $("#searchform").serialize(),
+		//console.log(data);
+
+		data.push({name: 'mapIDs', value: mapIDArray});
+
+		//console.log(data);
+
+		$.post("php/search.php", data,
 
 			function(result){
+
+				//console.log(result);
 				searchResult = result;
         		unhide('searchwindow'); 
    				changeFeed('searchResults');
-			}
+			},
+			"json"
 		);
 	
 	  e.preventDefault();

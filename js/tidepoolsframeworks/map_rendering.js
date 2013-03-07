@@ -112,6 +112,13 @@
         }
         //-----------//
 
+
+        if (feedType == "searchResults"){
+
+            drawLandmarks(searchResult); //render data on map
+            $('#nav').load('php/landmark_feed.php',{'data':searchResult});
+        }
+
         else {
 
             $.postJSON("php/rebound.php", //what data is inside this geo window?
@@ -125,14 +132,12 @@
 
                 function(landmarks){
 
-                    // console.log(landmarks);
-
-
-
+ 
                     // check feed type to specify what data to show in scroller from query
                     if (feedType == "landmarks"){
                         $('#nav').load('php/landmark_feed.php',{'data':landmarks}); // also sending along the lat/long where landmark was dropped
                         drawLandmarks(landmarks); //render data on map
+
                     }
 
                     if (feedType == "comments"){
@@ -140,12 +145,7 @@
                         drawLandmarks(landmarks); //render data on map
                     }
 
-                    if (feedType == "searchResults"){
-
-                        // $('#nav').html(searchResult);
-                        $('#nav').load('php/search_results_feed.php',{'data':searchResult});
-                        drawLandmarks(searchResult); //render data on map
-                    }
+                    
                 }
             );
         }
@@ -272,7 +272,7 @@
 
     function drawLandmarks(landmarks){
 
-        console.log(landmarks);
+       // console.log(landmarks);
 
         var currentZ = map.getZoom(); //current map zoom
 

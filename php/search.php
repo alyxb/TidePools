@@ -34,11 +34,12 @@
 
 require('tidepools_variables.php');
 
+
 $counter = 1;
 
 
-// $maps = (isset($_POST['mapIDs']) ? $_POST['mapIDs'] : null);
-
+$maps = (isset($_POST['mapIDs']) ? $_POST['mapIDs'] : null);
+$maps = explode( ',', $maps ); //temporary to create array from string on future map layer iteration
 
 
 // rename landmarks to something more appropiate, since it should include
@@ -47,6 +48,7 @@ $searchResult = (isset($_POST['data']) ? $_POST['data'] : null);
 $searchResult = stripslashesDeep($searchResult);
 
 try {
+
 
     // open connection to MongoDB server
     $m = new Mongo('localhost');
@@ -68,25 +70,6 @@ try {
     $collection = $db -> $type;
 
     $final = array();
-
-/*
-        //======================================//
-        // For each map layer, find landmarks that belong in the box
-            foreach ($searchResult as $v) {
-
-            $cursor = $collection -> find(array(
-                'loc' => array(
-                    '$within' => array(
-                        '$box' => $box)
-                ),
-                'mapID' => $v)
-            );
-
-            $cursor -> sort(array('_id' => -1));
-            $cursor = iterator_to_array($cursor);
-
-        //=======================================//
-*/
 
 
 
@@ -153,19 +136,32 @@ try {
     }
 
     // query database
+    
+
     $cursor = $collection -> find($query);
 
+    $cursor = iterator_to_array($cursor);
+
+    array_push($final, $cursor);
+
+
+
+    //var_dump($cursor);
 
     // display search results
     // echo '<b>' . $cursor -> count() . ' item(s) found.</b><br /><br />';
 
     // convert search results to JSON format
-    $final = array();
+    //$final = array();
 
-    $cursor = iterator_to_array($cursor);
-    array_push($final, $cursor);
+    //$final = iterator_to_array($cursor);
+
+
+
+   // $final = array_push($final, $cursor);
 
     $final = json_encode($final);
+
     print_r($final);
 
 
