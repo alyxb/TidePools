@@ -3,7 +3,8 @@
 /**
  * landmark_feed.php
  *
- * Displays list view of landmarks currently on map.
+ * Displays list view of appropriate landmarks, either those currently on map or
+ * those returned from search results.
  *
  *
  *.---.      .                    .

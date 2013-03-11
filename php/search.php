@@ -96,7 +96,7 @@ try {
             break;
         case "loc":
             // get starting point and radius
-            // starting point is hard-coded into search.html for now
+            // starting point is hard-coded into index.html for now
             // later, this will be handled by the map interface
             $sanTerm = (float) $sanTerm;
             $distanceUnits = $_POST['distUnits'];
@@ -136,7 +136,7 @@ try {
     }
 
     // query database
-    
+
 
     $cursor = $collection -> find($query);
 
