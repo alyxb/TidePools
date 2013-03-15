@@ -35,3 +35,18 @@
 
     $DBname = "defaultMap";
 
+    $landmarkTypes = array(
+                        'event',
+                        'memory',
+                        'friend',
+                        'group',
+                        'alert',
+                        'fixthis',
+                        'food',
+                        'somethingelse',
+                        // extra items in 'Filter Landmarks' section
+                        'freewifi',
+                        'coupons',
+                        'jobs',
+    );
+

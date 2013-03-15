@@ -112,7 +112,8 @@
         }
         //-----------//
 
-
+        // if a search was done, only show search results;
+        // otherwise, show everything within the bounds of the map being viewed
         if (feedType == "searchResults"){
 
             drawLandmarks(searchResult); //render data on map
@@ -144,6 +145,13 @@
                         $('#nav').load('php/landmark_feed_shouts.php',{'data':landmarks}); // also sending along the lat/long where landmark was dropped
                         drawLandmarks(landmarks); //render data on map
                     }
+
+                    /*
+                    if (feedType == "test"){
+                        $('#nav').load('php/test.php',{'data':landmarks}); // also sending along the lat/long where landmark was dropped
+                        // drawLandmarks(landmarks); //render data on map
+                    }
+                    */
 
 
                 }

@@ -39,16 +39,15 @@ $counter = 1;
 
 
 $maps = (isset($_POST['mapIDs']) ? $_POST['mapIDs'] : null);
-$maps = explode( ',', $maps ); //temporary to create array from string on future map layer iteration
+
+//temporary to create array from string on future map layer iteration
+$maps = explode( ',', $maps );
 
 
-// rename landmarks to something more appropiate, since it should include
-// searchTerm, etc.?
 $searchResult = (isset($_POST['data']) ? $_POST['data'] : null);
 $searchResult = stripslashesDeep($searchResult);
 
 try {
-
 
     // open connection to MongoDB server
     $m = new Mongo('localhost');
@@ -71,11 +70,54 @@ try {
 
     $final = array();
 
-
-
     // sanitize text box input
     $sanTerm = substr($_POST['searchTerm'], 0, 40);
     $sanTerm = strip_tags($sanTerm);
+
+
+    // keyword search
+    $searchKey = array('name', 'description');
+
+    foreach ($searchKey as $v) {
+        $query = array(
+            "$v" => new MongoRegex(
+                '/' . $sanTerm . '/i'
+            )
+        );
+
+        $cursor = $collection -> find($query);
+
+        $cursor = iterator_to_array($cursor);
+
+        array_push($final, $cursor);
+
+    }
+
+    // landmark type search, if applicable
+
+    $sanTermLowercase = strtolower($sanTerm);
+
+    $landmarkTypeKey = array_search($sanTermLowercase, $landmarkTypes);
+
+    if (array_search($sanTermLowercase, $landmarkTypes) !== FALSE) {
+        $landmarkType = $landmarkTypes[$landmarkTypeKey];
+    }
+
+    if (isset($landmarkType)) {
+        $query = array(
+            'type' => $landmarkType
+        );
+
+        $cursor = $collection -> find($query);
+
+        $cursor = iterator_to_array($cursor);
+
+        array_push($final, $cursor);
+    }
+
+    unset($v);
+
+/*  TEMPORARY DISABLING GEOLOCATION SEARCH - THIS WILL HAVE ITS OWN BUTTON LATER
 
     $key = $m -> $_POST['searchKey'];
 
@@ -90,9 +132,9 @@ try {
                     '/' . $sanTerm . '/i'
                 )
             );
-            /* echo '<b>Locations with "' . $sanTerm . '" in their '
-                . $key . '</span></b><br /><br />';
-            */
+            // echo '<b>Locations with "' . $sanTerm . '" in their '
+            //    . $key . '</span></b><br /><br />';
+
             break;
         case "loc":
             // get starting point and radius
@@ -115,10 +157,10 @@ try {
             $lat = (float) $_POST['lat'];
             $lonlat = array($lon, $lat);
 
-            /* echo '<b>Locations within ' . $sanTerm . ' '.
-                $distanceUnits . ' of ' . $lon .  ' longitude, ' .
-                $lat . ' latitude</b><br />';
-            */
+            // echo '<b>Locations within ' . $sanTerm . ' '.
+            //    $distanceUnits . ' of ' . $lon .  ' longitude, ' .
+            //    $lat . ' latitude</b><br />';
+
 
             // set up location search as geospatial indexing search
             $query = array(
@@ -135,15 +177,15 @@ try {
             echo "<h3>Error - invalid search type</h3>";
     }
 
-    // query database
 
+    // query database
 
     $cursor = $collection -> find($query);
 
     $cursor = iterator_to_array($cursor);
 
     array_push($final, $cursor);
-
+*/
 
 
     //var_dump($cursor);
@@ -181,21 +223,18 @@ try {
 
 /* TAKE THIS DISPLAY OUT FOR NOW
 
-    // change $obj to $v later for consistency
-
     // iterate through the result set and print each document
-    foreach ($cursor as $obj) {
-        echo 'Name: ' . $obj['name'] . '<br />';
-        echo 'Time: ' . $obj['stats']['time']['start'] . ' - '
-            . $obj['stats']['time']['end'] . '<br />';
-        echo 'Location: ' . $obj['loc'][0] . ', ' . $obj['loc'][1] . '<br />';
-        echo 'Description: ' . $obj['description'] . '<br />';
-        echo 'Type: ' . $obj['type'] . '<br />';
+    foreach ($cursor as $v) {
+        echo 'Name: ' . $v['name'] . '<br />';
+        echo 'Time: ' . $v['stats']['time']['start'] . ' - '
+            . $v['stats']['time']['end'] . '<br />';
+        echo 'Location: ' . $v['loc'][0] . ', ' . $v['loc'][1] . '<br />';
+        echo 'Description: ' . $v['description'] . '<br />';
+        echo 'Type: ' . $v['type'] . '<br />';
         echo '<br />';
     }
 
-    // change $obj to $v later for consistency
-    unset ($obj); // remove lingering foreach() values from memory
+    unset ($v); // remove lingering foreach() values from memory
 
 
 */
