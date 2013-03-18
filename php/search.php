@@ -34,18 +34,21 @@
 
 require('tidepools_variables.php');
 
-
 $counter = 1;
-
 
 $maps = (isset($_POST['mapIDs']) ? $_POST['mapIDs'] : null);
 
 //temporary to create array from string on future map layer iteration
 $maps = explode( ',', $maps );
 
-
 $searchResult = (isset($_POST['data']) ? $_POST['data'] : null);
 $searchResult = stripslashesDeep($searchResult);
+
+$search1 = array();
+$search2 = array();
+$final = array();
+
+
 
 try {
 
@@ -68,35 +71,13 @@ try {
     $type = 'landmarks';
     $collection = $db -> $type;
 
-    $final = array();
-
     // sanitize text box input
     $sanTerm = substr($_POST['searchTerm'], 0, 40);
     $sanTerm = strip_tags($sanTerm);
-
-
-    // keyword search
-    $searchKey = array('name', 'description');
-
-    foreach ($searchKey as $v) {
-        $query = array(
-            "$v" => new MongoRegex(
-                '/' . $sanTerm . '/i'
-            )
-        );
-
-        $cursor = $collection -> find($query);
-
-        $cursor = iterator_to_array($cursor);
-
-        array_push($final, $cursor);
-
-    }
-
-    // landmark type search, if applicable
-
     $sanTermLowercase = strtolower($sanTerm);
 
+
+    // landmark type search, if applicable
     $landmarkTypeKey = array_search($sanTermLowercase, $landmarkTypes);
 
     if (array_search($sanTermLowercase, $landmarkTypes) !== FALSE) {
@@ -109,9 +90,22 @@ try {
         );
 
         $cursor = $collection -> find($query);
-
         $cursor = iterator_to_array($cursor);
+        array_push($final, $cursor);
+    }
 
+    // keyword search
+    $searchKey = array('name', 'description');
+
+    foreach ($searchKey as $v) {
+        $query = array(
+            "$v" => new MongoRegex(
+                '/' . $sanTerm . '/i'
+            )
+        );
+
+        $cursor = $collection -> find($query);
+        $cursor = iterator_to_array($cursor);
         array_push($final, $cursor);
     }
 
@@ -202,9 +196,6 @@ try {
 
    // $final = array_push($final, $cursor);
 
-    $final = json_encode($final);
-
-    print_r($final);
 
 
     // echo '<br /><br />';
@@ -239,6 +230,8 @@ try {
 
 */
 
+    $final = json_encode($final);
+    print_r($final);
 
     // disconnect from server
     $m -> close();

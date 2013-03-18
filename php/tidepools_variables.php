@@ -45,8 +45,21 @@
                         'food',
                         'somethingelse',
                         // extra items in 'Filter Landmarks' section
-                        'freewifi',
-                        'coupons',
-                        'jobs',
+                        // 'freewifi',
+                        // 'coupons',
+                        // 'jobs',
     );
 
+    $landmarkTypesFilters = array(
+                        'event',
+                        'memory',
+                        'alert',
+                        'fixthis',
+                        'freewifi',
+                        'friend',
+                        'group',
+                        'food',
+                        'coupons',
+                        'jobs',
+                        'somethingelse',
+    );
