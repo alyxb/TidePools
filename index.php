@@ -25,8 +25,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=us-ascii" />
 
     <title>Tidepools</title>
-    <link rel="stylesheet" href="css/style.css" type="text/css" />
-    <link rel="icon" href="images/pound.ico" />
+    <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
+    <link rel="icon" href="assets/images/pound.ico" />
   </head>
 
   <body>
@@ -35,10 +35,10 @@
       "width:353; height:5; background-color:#7f275b; position: relative; top:9;"></div>
 
       <div id="mapcontrol" style="width:353; height:51;">
-        <img src="images/map_collection.png" style="margin-top:15" />
+        <img src="assets/images/map_collection.png" style="margin-top:15" />
 
         <div id="newmap" style=
-        "width: 67px; position:absolute; height: 31; top:18px; left:288px; cursor:pointer; background-image:url('images/new_map.png'); z-index:1;"
+        "width: 67px; position:absolute; height: 31; top:18px; left:288px; cursor:pointer; background-image:url('assets/images/new_map.png'); z-index:1;"
         value='Hide Layer' onclick="unhide('mapform');"></div>
       </div>
 
@@ -49,7 +49,7 @@
       <div style="padding: 6px 6px 6px 6px;">
         <div style=
         "position:relative; display:inline-block; margin-bottom:6px;margin-right: -9; margin-left: -1;">
-        <img src="images/filter_landmarks.png" /></div>
+        <img src="assets/images/filter_landmarks.png" /></div>
             <?php include "php/landmark_filters_menu.php"; ?>
 
             <!-- NOTE: NEED TO RENAME 2 ICONS!
@@ -139,12 +139,12 @@
     <form id="newMap" action="php/record_map.php" method="post" onsubmit=
     "this.mapsubmit();">
     <div id="backbutton" style=
-    "position: relative; width:73px; background-image:url(images/back.png); height:30px; top:7;"
+    "position: relative; width:73px; background-image:url(assets/images/back.png); height:30px; top:7;"
     onclick="unhide('mapform')"></div><br />
     <p5>Create a New Map</p5><br />
 
     <p><i>Note: All maps aggregate unless specified</i></p><img src=
-    "images/icon_map.png" /><br />
+    "assets/images/icon_map.png" /><br />
 
     <p>Map Name<br />
       <input type="text" id="mapname" name="mapname" maxlength="50" /><br />
@@ -180,89 +180,89 @@ class="unhidden">
 <div style="padding: 0px 4px 4px 4px;">
   <div id="clickgo" style=
   "position:relative; display:inline-block; margin-bottom:6px; opacity: 1; z-index:2; margin-top:-5px;"
-  value='Hide Layer' class="target"><img src="images/clickgo.png" width="34" height=
+  value='Hide Layer' class="target"><img src="assets/images/clickgo.png" width="34" height=
   "25" /></div>
 
   <div id="A" style=
   "width: 39px; height: 37px; position:relative; display:inline-block; margin-bottom:6px; cursor:pointer; opacity: 1; z-index:2;"
   value='Hide Layer' onclick=
   "gotoCoordinates(42.349481561625495, -83.05789589881897);" class="target"><img src=
-  "images/A.png" width="39" height="37" /></div>
+  "assets/images/A.png" width="39" height="37" /></div>
 
   <div id="B" style=
   "width: 39px; height: 37px; position:relative; display:inline-block; margin-bottom:6px; cursor:pointer; opacity: 1; z-index:2;"
   value='Hide Layer' onclick=
   "gotoCoordinates(42.349703577207784, -83.05676937103271);" class="target"><img src=
-  "images/B.png" width="39" height="37" /></div>
+  "assets/images/B.png" width="39" height="37" /></div>
 
   <div id="C" style=
   "width: 39px; height: 37px; position:relative; display:inline-block; margin-bottom:6px; cursor:pointer; opacity: 1; z-index:2;"
   value='Hide Layer' onclick=
   "gotoCoordinates(42.34944191590328, -83.05510640144348);" class="target"><img src=
-  "images/C.png" width="39" height="37" /></div>
+  "assets/images/C.png" width="39" height="37" /></div>
 
   <div id="AUD" style=
   "width: 39px; height: 37px; position:relative; display:inline-block; margin-bottom:6px; cursor:pointer; opacity: 1; z-index:2;"
   value='Hide Layer' onclick="gotoCoordinates(42.36235320539709, -83.054478764534);"
-  class="target"><img src="images/AUD.png" width="39" height="37" /></div>
+  class="target"><img src="assets/images/AUD.png" width="39" height="37" /></div>
 
   <div id="154" style=
   "width: 39px; height: 37px; position:relative; display:inline-block; margin-bottom:6px; cursor:pointer; opacity: 1; z-index:2;"
   value='Hide Layer' onclick=
   "gotoCoordinates(42.352086230785794, -83.07842016220091);" class="target"><img src=
-  "images/154.png" width="39" height="37" /></div>
+  "assets/images/154.png" width="39" height="37" /></div>
 
   <div id="156" style=
   "width: 39px; height: 37px; position:relative; display:inline-block; margin-bottom:6px; cursor:pointer; opacity: 1; z-index:2;"
   value='Hide Layer' onclick=
   "gotoCoordinates(42.352177412073424, -83.07647824287415);" class="target"><img src=
-  "images/156.png" width="39" height="37" /></div>
+  "assets/images/156.png" width="39" height="37" /></div>
 
   <div id="157" style=
   "width: 39px; height: 37px; position:relative; display:inline-block; margin-bottom:6px; cursor:pointer; opacity: 1; z-index:2;"
   value='Hide Layer' onclick=
   "gotoCoordinates(42.35404858146037, -83.07889223098755);" class="target"><img src=
-  "images/157.png" width="39" height="37" /></div>
+  "assets/images/157.png" width="39" height="37" /></div>
 
   <div id="1243" style=
   "width: 39px; height: 37px; position:relative; display:inline-block; margin-bottom:6px; cursor:pointer; opacity: 1; z-index:2;"
   value='Hide Layer' onclick="gotoCoordinates(42.35659359955532, -83.0454021692276);"
-  class="target"><img src="images/1243.png" width="39" height="37" /></div>
+  class="target"><img src="assets/images/1243.png" width="39" height="37" /></div>
 
   <div id="campus" style=
   "width: 39px; height: 37px; position:relative; display:inline-block; margin-bottom:6px; cursor:pointer; opacity: 1; z-index:2;"
   value='Hide Layer' onclick=
   "gotoCoordinates(42.35079382091884, -83.04302036762238);" class="target"><img src=
-  "images/campus.png" width="39" height="37" /></div>
+  "assets/images/campus.png" width="39" height="37" /></div>
 </div>
 </div>
 
 <div id="addlandmark" style=
-"width: 140px; background-repeat: no-repeat; position:absolute; height: 42px; top:18px; left:397px; background-image:url('images/landmarkbutton.png'); z-index:1; cursor:pointer;"
+"width: 140px; background-repeat: no-repeat; position:absolute; height: 42px; top:18px; left:397px; background-image:url('assets/images/landmarkbutton.png'); z-index:1; cursor:pointer;"
 value='Hide Layer' onclick="unhide('landmarkmenu');" class="target"></div>
 
 <div id="trashlandmark" style=
 "width: 171px; height: 337px; position:fixed; background-color:#2d3c4b; border-style:solid; top:58px; left:398px; z-index:1; opacity:0.7;"
-class="hidden"><img src="images/trash.png" /></div>
+class="hidden"><img src="assets/images/trash.png" /></div>
 
 <div id="secretbutton" style=
 "z-index:2; background-color:#fff; position:absolute; width: 8px; height:40px; top:0; margin-left:-8; cursor:pointer;"
 onclick="secretLandmark()">
 <div id="loadingDiv" style=
-"background-image:url('images/loading.gif'); position:absolute;"></div>
+"background-image:url('assets/images/loading.gif'); position:absolute;"></div>
 </div>
 
-<script src="js/resources/leaflet.js" type="text/javascript"></script>
-<script src="js/resources/jquery.js" type="text/javascript"></script>
-<script src="js/resources/jquery_ui.js" type="text/javascript"></script>
-<script src="js/resources/jquery_ui_timepicker.js" type="text/javascript"></script>
+<script src="assets/js/resources/leaflet.js" type="text/javascript"></script>
+<script src="assets/js/resources/jquery.js" type="text/javascript"></script>
+<script src="assets/js/resources/jquery_ui.js" type="text/javascript"></script>
+<script src="assets/js/resources/jquery_ui_timepicker.js" type="text/javascript"></script>
 <!-- <script src="js/tidepoolsframeworks/APIkeys.js"></script> <!-- UNCOMMENT TO LOAD YOUR API Keys-->
-<script src="js/tidepoolsframeworks/global_functions.js" type="text/javascript"></script>
-<script src="js/tidepoolsframeworks/dragdrop.js" type="text/javascript"></script>
-<script src="js/tidepoolsframeworks/map_rendering.js" type="text/javascript"></script>
-<script src="js/tidepoolsframeworks/API_collect.js" type="text/javascript"></script>
-<script src="js/tidepoolsframeworks/landmark_functions.js" type="text/javascript"></script>
-<script src="js/tidepools.js" type="text/javascript"></script>
+<script src="assets/js/tidepoolsframeworks/global_functions.js" type="text/javascript"></script>
+<script src="assets/js/tidepoolsframeworks/dragdrop.js" type="text/javascript"></script>
+<script src="assets/js/tidepoolsframeworks/map_rendering.js" type="text/javascript"></script>
+<script src="assets/js/tidepoolsframeworks/API_collect.js" type="text/javascript"></script>
+<script src="assets/js/tidepoolsframeworks/landmark_functions.js" type="text/javascript"></script>
+<script src="assets/js/tidepools.js" type="text/javascript"></script>
 
 </body>
 </html>

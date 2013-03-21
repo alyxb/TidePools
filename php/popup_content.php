@@ -58,17 +58,17 @@ if ($class == 'status') {
             width:' . $popWidth . ';">';
         echo '<div id="dropzone" style="width:175px; height:42px;
             position:relative; float:left; margin-left:9; margin-bottom:5px;
-            background-image:url(../images/dropzone.png); z-index:1;">
+            background-image:url(../assets/images/dropzone.png); z-index:1;">
             </div>';
         echo '<div id="landmarklike" style="width:32px; height:28px;
             position:relative; margin-left:10px; float:left;
             display:inline-block; cursor:pointer;
-            background-image:url(../images/like.png); z-index:1;"
+            background-image:url(../assets/images/like.png); z-index:1;"
             onclick="likeLandmark(' . $landmarkID . ');"></div>';
         echo '<div id="follow" style="width:66px; height:27px;
             position:relative; margin-right:4; float:left;
             display:inline-block; cursor:pointer;
-            background-image:url(../images/follow.png); z-index:1;
+            background-image:url(../assets/images/follow.png); z-index:1;
             margin-left:5px;"
             onclick="followLandmark(' . $landmarkID . ');"></div>';
 
@@ -76,7 +76,7 @@ if ($class == 'status') {
 
             echo '<div id="delete" style="width:66px; height:27px;
                 position:relative; float:left; display:inline-block;
-                cursor:pointer; background-image:url(../images/delete.png);
+                cursor:pointer; background-image:url(../assets/images/delete.png);
                 z-index:1; margin-left:5px;"
                 onclick="deleteLandmark(' . $landmarkID . ');"></div><br>';
 

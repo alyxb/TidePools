@@ -47,7 +47,7 @@ if ($maps != null) {
         $selectVal = "'map" . $counter . "'";
 
         echo '<div id="map' . $counter . '" style="width:95px; height:35px; position:relative; float:left;" onclick="reBoundFilterMap(' . $idVal . ',' . $selectVal . ');">';
-        echo '<img style="float:left; position:relative; display:inline-block; cursor:pointer;" src="images/icon_map.png"/>';
+        echo '<img style="float:left; position:relative; display:inline-block; cursor:pointer;" src="assets/images/icon_map.png"/>';
         echo "<p style='font-size:11px;'>" . $counter . " " . $i['name'] . "</p>     ";  //plug into CSS here...
         echo "</div>";
 
