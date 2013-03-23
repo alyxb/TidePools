@@ -96,7 +96,6 @@
                 style="background-color: #dbd1d3;" onsubmit=
                 "this.searchsubmit(); return false;" /><br />
 
-            <strong>Keyword (max 40 characters)</strong>
             <br /><br />
 
             <!-- TO BE RE-ADDED LATER FOR ADVANCED GEOINDEXING SEARCH
