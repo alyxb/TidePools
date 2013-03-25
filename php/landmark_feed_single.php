@@ -74,8 +74,8 @@ try {
         echo '<div id="frame" style="padding-left:13px; padding-right:13px;">';
         echo '<div style="width:353; height:5; background-color:#7f275b; top:54;"></div>';
 
-        echo '<div id="backbutton" style="position: relative; width:73px; background-image:url(images/back.png); height:30px; top:7;" onclick="$(feedDiv).hide(); map.closePopup();" ></div>';
-        echo '<img style="float:right; padding-left:10px; max-width:125px; margin-top: -19px; position:relative;"src="images/' . $v['stats']['avatar'].'"/></br>';
+        echo '<div id="backbutton" style="position: relative; width:73px; background-image:url(assets/images/back.png); height:30px; top:7;" onclick="$(feedDiv).hide(); map.closePopup();" ></div>';
+        echo '<img style="float:right; padding-left:10px; max-width:125px; margin-top: -19px; position:relative;"src="assets/images/' . $v['stats']['avatar'].'"/></br>';
         echo '<div id="text box" style="margin-top:-11">';
 
         echo "<p><b>" . $v['name'] . "</b></p>";  //plug into CSS here...
@@ -94,7 +94,7 @@ try {
 
                     echo '<div style="width:100%; margin-left: -10px; margin-top: 42px; margin-bottom: 5px;">';
                     $num = rand(1, 3);
-                    echo '<img src="images/people/person' . $num . '.png" style="float:left; max-width:42px; margin-left: 8; margin-right:11;"/>';
+                    echo '<img src="assets/images/people/person' . $num . '.png" style="float:left; max-width:42px; margin-left: 8; margin-right:11;"/>';
                     echo '<div id="innertext" style=" width:348px; height:39; margin-left: 12; margin-top:1; margin-bottom:8">';
 
                     $name = stripslashes($val['name']);

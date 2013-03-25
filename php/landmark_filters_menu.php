@@ -41,7 +41,7 @@ foreach ($landmarkTypesFilters as $v) {
             position:relative; display:inline-block; margin-bottom:6px;
             z-index:1; cursor:pointer;"
             onclick="reBoundFilter(\'' . $v . '\'); select(\'' . $v . '\');">
-            <img src="images/filter_' . $v . '.png"
+            <img src="assets/images/filter_' . $v . '.png"
             width="49" height="49" />
         </div>
     ';

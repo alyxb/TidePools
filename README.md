@@ -37,3 +37,4 @@ Contributors
 --------------------
 * Lisa J. Lovchik [@g33kgrrl](https://github.com/g33kgrrl "g33kgrrl")
 * Jenny Ryan [@jnny](https://github.com/jnny "@jnny")
+* Nicholas Frota [@nonlinear](https://github.com/nonlinear "nonlinear")

@@ -60,7 +60,7 @@ if (isset($_POST['data'])) {
 
                         $num = rand(1, 3);
 
-                        echo '<img src="images/people/person' . $num . '.png" style="float:left; max-width:42px; margin-left: 8; margin-right:11;"/>';
+                        echo '<img src="assets/images/people/person' . $num . '.png" style="float:left; max-width:42px; margin-left: 8; margin-right:11;"/>';
 
                         echo '<div id="innertext" style=" width:348px;  height:39;  margin-left: 12; margin-top:1; margin-bottom:8">';
 

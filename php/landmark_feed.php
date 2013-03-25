@@ -36,7 +36,7 @@
 $counter = 1;
 
 //THIS is used to display a static message in the landmark feed:
-/* echo '<div style="width:351px; height:80px;"> <hr style="border:3px solid #df1c53;" /><img src="/images/announcement.png" style="float:left; margin-left: 8;" /> <div id="innertext" style="width:299px; height:75; float:left; margin-left: 7; margin-top:-5;"><p2>TidePools Social WiFi</p2>  </br> <p style="margin-top:2px; " > Social software for Community WiFi Mesh networks <a href="http://tidepools.co">http://tidepools.co</a></p></div> <hr></div>'; */
+/* echo '<div style="width:351px; height:80px;"> <hr style="border:3px solid #df1c53;" /><img src="assets/images/announcement.png" style="float:left; margin-left: 8;" /> <div id="innertext" style="width:299px; height:75; float:left; margin-left: 7; margin-top:-5;"><p2>TidePools Social WiFi</p2>  </br> <p style="margin-top:2px; " > Social software for Community WiFi Mesh networks <a href="http://tidepools.co">http://tidepools.co</a></p></div> <hr></div>'; */
 
 if (isset($_POST['data'])) {
 
@@ -65,7 +65,7 @@ if (isset($_POST['data'])) {
 
                     echo '<div style="width:97%; margin-left: -13px; margin-top: 15px; margin-bottom: 15px;">';
                     echo '<div style="cursor:pointer; margin-left:7px;" onclick="landmarkWindow(' . $idVal . ')">';
-                    echo '<img src="images/' . $val['stats']['avatar'].'"style="float:left; max-width:42px; margin-left: 8;"/>';
+                    echo '<img src="assets/images/' . $val['stats']['avatar'].'"style="float:left; max-width:42px; margin-left: 8;"/>';
 
                     if (isset($val['feed'])) {
 
@@ -90,7 +90,7 @@ if (isset($_POST['data'])) {
                         ) {
                             $result = array_reverse($val['feed']);
 
-                            echo "<img src='images/comment.png'/><p4 style='margin-bottom:7px;'>" . $result[0]['words'] . "</p4>";
+                            echo "<img src='assets/images/comment.png'/><p4 style='margin-bottom:7px;'>" . $result[0]['words'] . "</p4>";
                         }
                     }
 
